@@ -1,0 +1,25 @@
+name: "CI"
+
+on:
+  ## Event: PR
+  push:
+    paths:
+      ## Trigger: Global changes/release
+      - ".version"
+      - ".release"
+      - "gradle.properties"
+      - "*.kts"
+      - "**/*.kts"
+      - "**/*.kt"
+      - "**/*.java"
+      - "**/*.properties"
+      - "gradle/**"
+
+jobs:
+  ## Build Library
+  build-library:
+    uses: ./.github/workflows/module.build.yml
+    secrets: inherit
+    permissions:
+      contents: "read"
+    with: {}

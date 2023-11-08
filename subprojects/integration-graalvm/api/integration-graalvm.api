@@ -1,0 +1,4 @@
+public final class com/planetscale/PlanetscaleFeature {
+	public fun <init> ()V
+}
+

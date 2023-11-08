@@ -1,0 +1,84 @@
+[versions]
+atomicfu = "0.22.0"
+buildconfig-plugin = "4.1.2"
+doctor-plugin = "0.8.1"
+gradle-plugin-commonUserData = "1.11"
+gradle-plugin-githubDependencyGraph = "0.0.3"
+gradle-plugin-profiler = "0.0.2"
+gradle-plugin-wrapperUpgrade = "0.11.2"
+graalvm-sdk = "23.1.0"
+graalvm-plugin = "0.9.23"
+graalvm-metadata = "0.3.3"
+h2 = "2.2.224"
+junit-jupiter = "5.10.0"
+ktlint = "0.49.1"
+kotlin-sdk = "1.9.20"
+kover = "0.7.4"
+kotlinx-abiValidator = "0.13.2"
+kotlinx-serialization = "1.6.0"
+kotlinx-coroutines = "1.7.3"
+kotlinx-collections = "0.3.5"
+ksp = "1.9.20-1.0.14"
+micronaut-plugins = "4.1.2"
+mysql = "8.2.0"
+nexusPublish = "1.3.0"
+sigstore = "0.5.0"
+spdx-sbom = "0.1.0"
+spotless = "6.21.0"
+sonar = "4.3.1.3277"
+slf4j = "2.0.9"
+logback = "1.4.7"
+testLogger = "3.2.0"
+versionCheck = "0.49.0"
+testLoggerPlugin = "3.2.0"
+versionCatalogUpdate = "0.8.1"
+
+[plugins]
+buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig-plugin" }
+doctor = { id = "com.osacky.doctor", version.ref = "doctor-plugin" }
+graalvm = { id = "org.graalvm.buildtools.native", version.ref = "graalvm-plugin" }
+gradle-commonUserData = { id = "com.gradle.common-custom-user-data-gradle-plugin", version.ref = "gradle-plugin-commonUserData" }
+gradle-github-dependencyGraph = { id = "org.gradle.github-dependency-graph-gradle-plugin", version.ref = "gradle-plugin-githubDependencyGraph" }
+gradle-profiler = { id = "org.gradle.gradle-profiler", version.ref = "gradle-plugin-profiler" }
+gradle-wrapperUpgrade = { id = "org.gradle.wrapper-upgrade", version.ref = "gradle-plugin-wrapperUpgrade" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-plugin-jpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin-sdk" }
+kotlin-plugin-noarg = { id = "org.jetbrains.kotlin.plugin.noarg", version.ref = "kotlin-sdk" }
+kotlin-plugin-allopen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin-sdk" }
+kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-sdk" }
+kotlin-plugin-atomicfu = { id = "org.jetbrains.kotlin.plugin.atomicfu", version.ref = "kotlin-sdk" }
+kotlinx-plugin-abiValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinx-abiValidator" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+micronaut-library = { id = "io.micronaut.library", version.ref = "micronaut-plugins" }
+nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexusPublish" }
+sbom = { id = "org.spdx.sbom", version.ref = "spdx-sbom" }
+sigstore = { id = "dev.sigstore.sign", version.ref = "sigstore" }
+sonar = { id = "org.sonarqube", version.ref = "sonar" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+testLogger = { id = "com.adarshr.test-logger", version.ref = "testLogger" }
+version-check = { id = "com.github.ben-manes.versions", version.ref = "versionCheck" }
+version-catalogUpdate = { id = "nl.littlerobots.version-catalog-update", version.ref = "versionCatalogUpdate" }
+
+[libraries]
+h2 = { group = "com.h2database", name = "h2", version.ref = "h2" }
+mysql = { group = "com.mysql", name = "mysql-connector-j", version.ref = "mysql" }
+slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
+slf4j-jdk14 = { group = "org.slf4j", name = "slf4j-jdk14", version.ref = "slf4j" }
+logback-core = { group = "ch.qos.logback", name = "logback-core", version.ref = "logback" }
+logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+graalvm-sdk = { group = "org.graalvm.sdk", name = "graal-sdk", version.ref = "graalvm-sdk" }
+graalvm-junit-platform-native = { group = "org.graalvm.buildtools", name = "junit-platform-native", version.ref = "graalvm-plugin" }
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit-jupiter" }
+junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit-jupiter" }
+junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit-jupiter" }
+junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit-jupiter" }
+# Plugins
+plugin-nexus-publish = { group = "io.github.gradle-nexus", name = "publish-plugin", version.ref = "nexusPublish" }
+plugin-sigstore = { group = "dev.sigstore", name = "sigstore-gradle-sign-plugin", version.ref = "sigstore" }
+
+[bundles]
+h2 = ["h2"]
+mysql = ["mysql"]
+slf4j = ["slf4j-api"]
+logback = ["logback-core", "logback-classic"]
+junit5 = ["junit-jupiter", "junit-jupiter-api", "junit-jupiter-params"]

@@ -1,0 +1,83 @@
+name: "Module: Build"
+
+on:
+  ## Manual dispatch
+  workflow_dispatch: {}
+
+  ## Sub-workflow call
+  workflow_call:
+    inputs:
+      tag:
+        type: string
+        required: false
+        description: "Version tag to use"
+      runner:
+        type: string
+        required: false
+        description: "Runner tag to use"
+    secrets:
+      SONAR_TOKEN:
+        required: true
+        description: "SonarCloud token"
+      CODECOV_TOKEN:
+        required: true
+        description: "Coverage reporting token"
+      BUILDLESS_APIKEY:
+        required: true
+        description: "API key for build caching"
+
+env:
+  CI: true
+
+jobs:
+  ## Stage: Build Library with Gradle
+  build-library:
+    name: "Build Library"
+    runs-on: ${{ vars.RUNNER || inputs.runner || 'ubuntu-latest' }}
+    permissions:
+      contents: "read"
+    steps:
+      - name: "Setup: Checkout"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: "Build: Gradle"
+        uses: gradle/gradle-build-action@a4cf152f482c7ca97ef56ead29bf08bcd953284c # v2
+        id: gradlebuild
+        env:
+          CI: true
+          BUILDLESS_APIKEY: ${{ secrets.BUILDLESS_APIKEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          cache-read-only: false
+          arguments: |
+            build
+            test
+            check
+            koverXmlReport
+            sonar
+            --scan
+            --warning-mode=none
+            --dependency-verification=lenient
+            -Pci=true
+      - name: "Report: Tests"
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Library Tests
+          path: ./subprojects/*/build/test-results/test/TEST-*.xml
+          reporter: java-junit
+          max-annotations: "0"
+          fail-on-error: false
+      - name: "Artifact: Reports"
+        uses: actions/upload-artifact@v3
+        continue-on-error: true
+        with:
+          name: test-reports-jvm
+          path: |
+            build/reports/kover/merged/xml/report.xml
+      - name: "Report: Codecov"
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./build/reports/kover/merged/xml/report.xml

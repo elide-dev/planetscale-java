@@ -1,0 +1,357 @@
+public final class com/planetscale/Driver : com/planetscale/jvm/driver/PlanetscaleDriver {
+	public fun <init> ()V
+}
+
+public final class com/planetscale/jvm/DriverParameter : java/lang/Enum {
+	public static final field ENABLE_BOOST Lcom/planetscale/jvm/DriverParameter;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getParamName ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/planetscale/jvm/DriverParameter;
+	public static fun values ()[Lcom/planetscale/jvm/DriverParameter;
+}
+
+public abstract interface class com/planetscale/jvm/PlanetscaleAdapter : java/io/Closeable, java/lang/AutoCloseable {
+	public abstract fun configure (Lcom/planetscale/jvm/PlanetscaleConfig;)V
+	public abstract fun connect (Ljava/lang/String;Ljava/util/Properties;)Ljava/sql/Connection;
+	public abstract fun getMajorVersion ()I
+	public abstract fun getMinorVersion ()I
+	public abstract fun getParentLogger ()Ljava/util/logging/Logger;
+	public abstract fun getPropertyInfo (Ljava/lang/String;Ljava/util/Properties;)[Ljava/sql/DriverPropertyInfo;
+	public abstract fun validate ()V
+}
+
+public final class com/planetscale/jvm/PlanetscaleAdapter$DefaultImpls {
+	public static synthetic fun connect$default (Lcom/planetscale/jvm/PlanetscaleAdapter;Ljava/lang/String;Ljava/util/Properties;ILjava/lang/Object;)Ljava/sql/Connection;
+}
+
+public abstract interface class com/planetscale/jvm/PlanetscaleConfig {
+	public static final field Companion Lcom/planetscale/jvm/PlanetscaleConfig$Companion;
+	public static fun defaults (Ljava/net/URI;Lcom/planetscale/jvm/PlanetscaleCredential;)Lcom/planetscale/jvm/PlanetscaleConfig;
+	public abstract fun enableBoost ()Z
+	public abstract fun extraParams ()Ljava/util/SortedMap;
+	public abstract fun getCredential ()Lcom/planetscale/jvm/PlanetscaleCredential;
+	public abstract fun getState ()Lcom/planetscale/jvm/PlanetscaleConfig$Companion$PlanetscaleConfigState;
+	public abstract fun getUri ()Ljava/net/URI;
+	public abstract fun multiHost ()Z
+	public static fun of (Ljava/net/URI;Lcom/planetscale/jvm/PlanetscaleCredential;Lcom/planetscale/jvm/param/ParameterSource;ZLjava/util/SortedMap;)Lcom/planetscale/jvm/PlanetscaleConfig;
+	public static fun parseUri (Ljava/lang/String;)Ljava/net/URI;
+	public static fun resolve (Ljava/net/URI;Ljava/util/Properties;)Lcom/planetscale/jvm/PlanetscaleConfig;
+	public static fun resolve (Ljava/util/Map;Ljava/util/Properties;Ljava/net/URI;)Lcom/planetscale/jvm/PlanetscaleConfig;
+	public abstract fun targetHosts ()Ljava/util/List;
+}
+
+public final class com/planetscale/jvm/PlanetscaleConfig$Companion {
+	public final fun defaults (Ljava/net/URI;Lcom/planetscale/jvm/PlanetscaleCredential;)Lcom/planetscale/jvm/PlanetscaleConfig;
+	public final fun of (Ljava/net/URI;Lcom/planetscale/jvm/PlanetscaleCredential;Lcom/planetscale/jvm/param/ParameterSource;ZLjava/util/SortedMap;)Lcom/planetscale/jvm/PlanetscaleConfig;
+	public static synthetic fun of$default (Lcom/planetscale/jvm/PlanetscaleConfig$Companion;Ljava/net/URI;Lcom/planetscale/jvm/PlanetscaleCredential;Lcom/planetscale/jvm/param/ParameterSource;ZLjava/util/SortedMap;ILjava/lang/Object;)Lcom/planetscale/jvm/PlanetscaleConfig;
+	public final fun parseUri (Ljava/lang/String;)Ljava/net/URI;
+	public final fun resolve (Ljava/net/URI;Ljava/util/Properties;)Lcom/planetscale/jvm/PlanetscaleConfig;
+	public final fun resolve (Ljava/util/Map;Ljava/util/Properties;Ljava/net/URI;)Lcom/planetscale/jvm/PlanetscaleConfig;
+	public static synthetic fun resolve$default (Lcom/planetscale/jvm/PlanetscaleConfig$Companion;Ljava/net/URI;Ljava/util/Properties;ILjava/lang/Object;)Lcom/planetscale/jvm/PlanetscaleConfig;
+}
+
+public final class com/planetscale/jvm/PlanetscaleConfig$Companion$PlanetscaleConfigState : java/lang/Record, com/planetscale/jvm/PlanetscaleConfig {
+	public final fun component1 ()Ljava/net/URI;
+	public final fun component2 ()Lcom/planetscale/jvm/PlanetscaleCredential;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4-O-1Ai9o ()Lkotlin/Pair;
+	public final fun component5 ()Ljava/util/SortedMap;
+	public final fun copy-_5V2Imw (Ljava/net/URI;Lcom/planetscale/jvm/PlanetscaleCredential;Ljava/util/List;Lkotlin/Pair;Ljava/util/SortedMap;)Lcom/planetscale/jvm/PlanetscaleConfig$Companion$PlanetscaleConfigState;
+	public static synthetic fun copy-_5V2Imw$default (Lcom/planetscale/jvm/PlanetscaleConfig$Companion$PlanetscaleConfigState;Ljava/net/URI;Lcom/planetscale/jvm/PlanetscaleCredential;Ljava/util/List;Lkotlin/Pair;Ljava/util/SortedMap;ILjava/lang/Object;)Lcom/planetscale/jvm/PlanetscaleConfig$Companion$PlanetscaleConfigState;
+	public fun credential ()Lcom/planetscale/jvm/PlanetscaleCredential;
+	public final fun enableBoost ()Lkotlin/Pair;
+	public fun enableBoost ()Z
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun extra ()Ljava/util/SortedMap;
+	public fun extraParams ()Ljava/util/SortedMap;
+	public synthetic fun getCredential ()Lcom/planetscale/jvm/PlanetscaleCredential;
+	public synthetic fun getState ()Lcom/planetscale/jvm/PlanetscaleConfig$Companion$PlanetscaleConfigState;
+	public synthetic fun getUri ()Ljava/net/URI;
+	public fun hashCode ()I
+	public final fun hosts ()Ljava/util/List;
+	public fun multiHost ()Z
+	public fun state ()Lcom/planetscale/jvm/PlanetscaleConfig$Companion$PlanetscaleConfigState;
+	public fun targetHosts ()Ljava/util/List;
+	public fun toString ()Ljava/lang/String;
+	public fun uri ()Ljava/net/URI;
+}
+
+public final class com/planetscale/jvm/PlanetscaleConfig$DefaultImpls {
+	public static fun enableBoost (Lcom/planetscale/jvm/PlanetscaleConfig;)Z
+	public static fun extraParams (Lcom/planetscale/jvm/PlanetscaleConfig;)Ljava/util/SortedMap;
+	public static fun multiHost (Lcom/planetscale/jvm/PlanetscaleConfig;)Z
+	public static fun targetHosts (Lcom/planetscale/jvm/PlanetscaleConfig;)Ljava/util/List;
+}
+
+public abstract interface class com/planetscale/jvm/PlanetscaleConnection : java/sql/Connection {
+	public abstract fun getAdapter ()Lcom/planetscale/jvm/PlanetscaleAdapter;
+}
+
+public abstract interface class com/planetscale/jvm/PlanetscaleCredential {
+	public static final field Companion Lcom/planetscale/jvm/PlanetscaleCredential$Companion;
+	public abstract fun getDatabase ()Ljava/lang/String;
+	public abstract fun getPassword ()Ljava/lang/String;
+	public abstract fun getUsername ()Ljava/lang/String;
+	public static fun resolve (Ljava/net/URI;)Lcom/planetscale/jvm/PlanetscaleCredential;
+	public static fun user (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/planetscale/jvm/PlanetscaleCredential;
+}
+
+public final class com/planetscale/jvm/PlanetscaleCredential$Companion {
+	public final fun resolve (Ljava/net/URI;)Lcom/planetscale/jvm/PlanetscaleCredential;
+	public final fun user (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/planetscale/jvm/PlanetscaleCredential;
+}
+
+public abstract interface class com/planetscale/jvm/PlanetscaleParameter {
+	public static final field Companion Lcom/planetscale/jvm/PlanetscaleParameter$Companion;
+	public abstract fun getKey ()Lcom/planetscale/jvm/DriverParameter;
+	public abstract fun getParam ()Lcom/planetscale/jvm/param/Parameter;
+	public abstract fun getSource ()Lcom/planetscale/jvm/param/ParameterSource;
+	public abstract fun getValue ()Ljava/lang/Object;
+}
+
+public final class com/planetscale/jvm/PlanetscaleParameter$Companion {
+}
+
+public final class com/planetscale/jvm/PlanetscaleParameter$EnableBoost : com/planetscale/jvm/PlanetscaleParameter {
+	public static final field Companion Lcom/planetscale/jvm/PlanetscaleParameter$EnableBoost$Companion;
+	public static final synthetic fun box-impl (Lkotlin/Pair;)Lcom/planetscale/jvm/PlanetscaleParameter$EnableBoost;
+	public static fun constructor-impl (Lkotlin/Pair;)Lkotlin/Pair;
+	public static final fun disabled-RKw8F94 (Lcom/planetscale/jvm/param/ParameterSource;)Lkotlin/Pair;
+	public static final fun enabled-RKw8F94 (Lcom/planetscale/jvm/param/ParameterSource;)Lkotlin/Pair;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Lkotlin/Pair;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Lkotlin/Pair;Lkotlin/Pair;)Z
+	public fun getKey ()Lcom/planetscale/jvm/DriverParameter;
+	public static fun getKey-impl (Lkotlin/Pair;)Lcom/planetscale/jvm/DriverParameter;
+	public fun getParam ()Lcom/planetscale/jvm/param/Parameter;
+	public static fun getParam-impl (Lkotlin/Pair;)Lcom/planetscale/jvm/param/Parameter;
+	public fun getSource ()Lcom/planetscale/jvm/param/ParameterSource;
+	public static fun getSource-impl (Lkotlin/Pair;)Lcom/planetscale/jvm/param/ParameterSource;
+	public fun getValue ()Ljava/lang/Boolean;
+	public synthetic fun getValue ()Ljava/lang/Object;
+	public static fun getValue-impl (Lkotlin/Pair;)Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Lkotlin/Pair;)I
+	public static final fun of-5Oy5_50 (ZLcom/planetscale/jvm/param/ParameterSource;)Lkotlin/Pair;
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Lkotlin/Pair;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Lkotlin/Pair;
+}
+
+public final class com/planetscale/jvm/PlanetscaleParameter$EnableBoost$Companion : com/planetscale/jvm/param/Parameter$BooleanOptionFactory {
+	public final fun disabled-RKw8F94 (Lcom/planetscale/jvm/param/ParameterSource;)Lkotlin/Pair;
+	public static synthetic fun disabled-RKw8F94$default (Lcom/planetscale/jvm/PlanetscaleParameter$EnableBoost$Companion;Lcom/planetscale/jvm/param/ParameterSource;ILjava/lang/Object;)Lkotlin/Pair;
+	public final fun enabled-RKw8F94 (Lcom/planetscale/jvm/param/ParameterSource;)Lkotlin/Pair;
+	public static synthetic fun enabled-RKw8F94$default (Lcom/planetscale/jvm/PlanetscaleParameter$EnableBoost$Companion;Lcom/planetscale/jvm/param/ParameterSource;ILjava/lang/Object;)Lkotlin/Pair;
+	public final fun of-5Oy5_50 (ZLcom/planetscale/jvm/param/ParameterSource;)Lkotlin/Pair;
+	public static synthetic fun of-5Oy5_50$default (Lcom/planetscale/jvm/PlanetscaleParameter$EnableBoost$Companion;ZLcom/planetscale/jvm/param/ParameterSource;ILjava/lang/Object;)Lkotlin/Pair;
+}
+
+public abstract class com/planetscale/jvm/driver/AbstractPlanetscaleAdapter : com/planetscale/jvm/PlanetscaleAdapter, java/io/Closeable, java/lang/AutoCloseable {
+	public fun <init> ()V
+	public fun close ()V
+	public fun configure (Lcom/planetscale/jvm/PlanetscaleConfig;)V
+	public fun connect (Ljava/lang/String;Ljava/util/Properties;)Ljava/sql/Connection;
+	protected fun connectBacking (Lcom/planetscale/jvm/PlanetscaleConfig;Ljava/net/URI;Ljava/util/Properties;)Lcom/planetscale/jvm/PlanetscaleConnection;
+	protected abstract fun createDriver ()Ljava/sql/Driver;
+	public fun getMajorVersion ()I
+	public fun getMinorVersion ()I
+	public fun getParentLogger ()Ljava/util/logging/Logger;
+	public fun getPropertyInfo (Ljava/lang/String;Ljava/util/Properties;)[Ljava/sql/DriverPropertyInfo;
+	protected abstract fun toURI (Lcom/planetscale/jvm/PlanetscaleConfig;)Ljava/net/URI;
+	public fun validate ()V
+	protected fun withDriver (Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+}
+
+public final class com/planetscale/jvm/driver/CloudProvider : java/lang/Enum {
+	public static final field AWS Lcom/planetscale/jvm/driver/CloudProvider;
+	public static final field GCP Lcom/planetscale/jvm/driver/CloudProvider;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/planetscale/jvm/driver/CloudProvider;
+	public static fun values ()[Lcom/planetscale/jvm/driver/CloudProvider;
+}
+
+public final class com/planetscale/jvm/driver/Constants {
+	public static final field CONNECT_DOMAIN Ljava/lang/String;
+	public static final field INSTANCE Lcom/planetscale/jvm/driver/Constants;
+	public static final field MYSQL_DRIVER Ljava/lang/String;
+	public static final field MYSQL_PORT I
+	public static final field PASS_ENV_VAR Ljava/lang/String;
+	public static final field PASS_VM_PROPERTY Ljava/lang/String;
+	public static final field USER_ENV_VAR Ljava/lang/String;
+	public static final field USER_VM_PROPERTY Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/planetscale/jvm/driver/Constants$DriverParams {
+	public static final field AUTO_RECONNECT Ljava/lang/String;
+	public static final field CACHE_RESULT_SET_METADATA Ljava/lang/String;
+	public static final field CACHE_SERVER_CONFIG Ljava/lang/String;
+	public static final field INSTANCE Lcom/planetscale/jvm/driver/Constants$DriverParams;
+	public static final field ROUND_ROBIN_LOAD_BALANCE Ljava/lang/String;
+	public static final field SESSION_VARIABLES Ljava/lang/String;
+	public static final field SSL_MODE Ljava/lang/String;
+	public static final field SSL_MODE_VERIFY Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/planetscale/jvm/driver/Constants$Prefix {
+	public static final field H2 Ljava/lang/String;
+	public static final field INSTANCE Lcom/planetscale/jvm/driver/Constants$Prefix;
+	public static final field MYSQL Ljava/lang/String;
+	public static final field PLANETSCALE Ljava/lang/String;
+	public static final field REPLICATION Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/planetscale/jvm/driver/Constants$Provider {
+	public static final field AWS Ljava/lang/String;
+	public static final field AWS_CREDS_VAR Ljava/lang/String;
+	public static final field GCP Ljava/lang/String;
+	public static final field GCP_CREDS_VAR Ljava/lang/String;
+	public static final field INSTANCE Lcom/planetscale/jvm/driver/Constants$Provider;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/planetscale/jvm/driver/Constants$StringValue {
+	public static final field FALSE Ljava/lang/String;
+	public static final field INSTANCE Lcom/planetscale/jvm/driver/Constants$StringValue;
+	public static final field TRUE Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/planetscale/jvm/driver/Constants$SymbolicHosts {
+	public static final field AWS Ljava/lang/String;
+	public static final field GCP Ljava/lang/String;
+	public static final field INSTANCE Lcom/planetscale/jvm/driver/Constants$SymbolicHosts;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/planetscale/jvm/driver/Constants$UrlTokens {
+	public static final field HOST_SEPARATOR Ljava/lang/String;
+	public static final field INSTANCE Lcom/planetscale/jvm/driver/Constants$UrlTokens;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract class com/planetscale/jvm/driver/PlanetscaleDriver : java/io/Closeable, java/lang/AutoCloseable, java/sql/Driver {
+	public fun <init> ()V
+	public fun acceptsURL (Ljava/lang/String;)Z
+	public fun close ()V
+	public fun connect (Ljava/lang/String;Ljava/util/Properties;)Ljava/sql/Connection;
+	public fun getMajorVersion ()I
+	public fun getMinorVersion ()I
+	public fun getParentLogger ()Ljava/util/logging/Logger;
+	public fun getPropertyInfo (Ljava/lang/String;Ljava/util/Properties;)[Ljava/sql/DriverPropertyInfo;
+	public fun jdbcCompliant ()Z
+	public static final fun resolveImpl ()Lcom/planetscale/jvm/PlanetscaleAdapter;
+}
+
+public final class com/planetscale/jvm/param/Defaults {
+	public static final field INSTANCE Lcom/planetscale/jvm/param/Defaults;
+	public static final field enableBoost Z
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class com/planetscale/jvm/param/Parameter {
+	public static final field Companion Lcom/planetscale/jvm/param/Parameter$Companion;
+	public abstract fun getName ()Ljava/lang/String;
+	public abstract fun getValue ()Ljava/lang/Object;
+	public static fun literal (Ljava/lang/String;Ljava/lang/Object;)Lcom/planetscale/jvm/param/Parameter;
+}
+
+public abstract class com/planetscale/jvm/param/Parameter$BooleanOptionFactory : com/planetscale/jvm/param/Parameter$ParameterParser {
+	public fun <init> (Lcom/planetscale/jvm/DriverParameter;)V
+	public fun envName ()Ljava/lang/String;
+	public fun getOption ()Lcom/planetscale/jvm/DriverParameter;
+	public fun parse (Ljava/lang/String;)Ljava/lang/Boolean;
+	public synthetic fun parse (Ljava/lang/String;)Ljava/lang/Object;
+	public fun resolve (Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;)Ljava/lang/Boolean;
+	public synthetic fun resolve (Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;)Ljava/lang/Object;
+	public synthetic fun resolveOr (Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;Ljava/lang/Object;)Ljava/lang/Object;
+	public fun resolveOr (Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;Z)Ljava/lang/Boolean;
+	public fun uriName ()Ljava/lang/String;
+	public fun vmPropName ()Ljava/lang/String;
+}
+
+public final class com/planetscale/jvm/param/Parameter$Companion {
+	public final fun literal (Ljava/lang/String;Ljava/lang/Object;)Lcom/planetscale/jvm/param/Parameter;
+}
+
+public final class com/planetscale/jvm/param/Parameter$LiteralParameter : com/planetscale/jvm/param/Parameter {
+	public static final synthetic fun box-impl (Lkotlin/Pair;)Lcom/planetscale/jvm/param/Parameter$LiteralParameter;
+	public static fun constructor-impl (Lkotlin/Pair;)Lkotlin/Pair;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Lkotlin/Pair;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Lkotlin/Pair;Lkotlin/Pair;)Z
+	public fun getName ()Ljava/lang/String;
+	public static fun getName-impl (Lkotlin/Pair;)Ljava/lang/String;
+	public fun getValue ()Ljava/lang/Object;
+	public static fun getValue-impl (Lkotlin/Pair;)Ljava/lang/Object;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Lkotlin/Pair;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Lkotlin/Pair;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Lkotlin/Pair;
+}
+
+public abstract interface class com/planetscale/jvm/param/Parameter$ParameterFactory {
+	public abstract fun parse (Ljava/lang/String;)Ljava/lang/Object;
+}
+
+public abstract interface class com/planetscale/jvm/param/Parameter$ParameterParser : com/planetscale/jvm/param/Parameter$ParameterFactory {
+	public abstract fun envName ()Ljava/lang/String;
+	public abstract fun getOption ()Lcom/planetscale/jvm/DriverParameter;
+	public abstract fun resolve (Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;)Ljava/lang/Object;
+	public abstract fun resolveOr (Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;Ljava/lang/Object;)Ljava/lang/Object;
+	public abstract fun uriName ()Ljava/lang/String;
+	public abstract fun vmPropName ()Ljava/lang/String;
+}
+
+public final class com/planetscale/jvm/param/Parameter$ParameterParser$DefaultImpls {
+	public static fun envName (Lcom/planetscale/jvm/param/Parameter$ParameterParser;)Ljava/lang/String;
+	public static fun resolve (Lcom/planetscale/jvm/param/Parameter$ParameterParser;Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;)Ljava/lang/Object;
+	public static fun resolveOr (Lcom/planetscale/jvm/param/Parameter$ParameterParser;Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;Ljava/lang/Object;)Ljava/lang/Object;
+	public static fun uriName (Lcom/planetscale/jvm/param/Parameter$ParameterParser;)Ljava/lang/String;
+	public static fun vmPropName (Lcom/planetscale/jvm/param/Parameter$ParameterParser;)Ljava/lang/String;
+}
+
+public abstract class com/planetscale/jvm/param/Parameter$StringOptionFactory : com/planetscale/jvm/param/Parameter$ParameterParser {
+	public fun <init> (Lcom/planetscale/jvm/DriverParameter;)V
+	public fun envName ()Ljava/lang/String;
+	public fun getOption ()Lcom/planetscale/jvm/DriverParameter;
+	public synthetic fun parse (Ljava/lang/String;)Ljava/lang/Object;
+	public fun parse (Ljava/lang/String;)Ljava/lang/String;
+	public synthetic fun resolve (Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;)Ljava/lang/Object;
+	public fun resolve (Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;)Ljava/lang/String;
+	public synthetic fun resolveOr (Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;Ljava/lang/Object;)Ljava/lang/Object;
+	public fun resolveOr (Ljava/net/URI;Ljava/util/Map;Ljava/util/Properties;Ljava/lang/String;)Ljava/lang/String;
+	public fun uriName ()Ljava/lang/String;
+	public fun vmPropName ()Ljava/lang/String;
+}
+
+public final class com/planetscale/jvm/param/ParameterSource : java/lang/Enum {
+	public static final field ENVIRONMENT Lcom/planetscale/jvm/param/ParameterSource;
+	public static final field PROGRAMMATIC Lcom/planetscale/jvm/param/ParameterSource;
+	public static final field URL Lcom/planetscale/jvm/param/ParameterSource;
+	public static final field VM_PROPERTY Lcom/planetscale/jvm/param/ParameterSource;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/planetscale/jvm/param/ParameterSource;
+	public static fun values ()[Lcom/planetscale/jvm/param/ParameterSource;
+}
+

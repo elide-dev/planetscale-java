@@ -1,0 +1,29 @@
+name: "PR"
+
+on:
+  ## Event: Merge group checks
+  merge_group:
+    types: [checks_requested]
+
+  ## Event: PR
+  pull_request:
+    paths:
+      ## Trigger: Global changes/release
+      - ".version"
+      - ".release"
+      - "gradle.properties"
+      - "*.kts"
+      - "**/*.kts"
+      - "**/*.kt"
+      - "**/*.java"
+      - "**/*.properties"
+      - "gradle/**"
+
+jobs:
+  ## Stage: Build Library
+  build-library:
+    uses: ./.github/workflows/module.build.yml
+    secrets: inherit
+    permissions:
+      contents: "read"
+    with: {}
