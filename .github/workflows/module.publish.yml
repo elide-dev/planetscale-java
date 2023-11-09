@@ -11,10 +11,6 @@ on:
         type: string
         required: false
         description: "Runner to use"
-    secrets:
-      GITHUB_TOKEN:
-        required: true
-        description: "GitHub token"
 
 env:
   CI: true
