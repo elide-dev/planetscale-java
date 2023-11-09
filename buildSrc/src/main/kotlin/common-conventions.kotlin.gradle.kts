@@ -24,7 +24,7 @@ val forcedResolutions = listOf(
     // https://github.com/elide-dev/planetscale-java/security/dependabot/4
     "org.json:json" to ("20231013" to "elide-dev/planetscale-java/security/dependabot/4"),
     // https://github.com/elide-dev/planetscale-java/security/dependabot/3
-    "com.google.guava:guava" to ("32.0.0" to "elide-dev/planetscale-java/security/dependabot/3"),
+    "com.google.guava:guava" to ("32.1.3-jre" to "elide-dev/planetscale-java/security/dependabot/3"),
     // https://github.com/elide-dev/planetscale-java/security/dependabot/2
     "com.squareup.okio:okio" to ("3.4.0" to "elide-dev/planetscale-java/security/dependabot/2"),
 ).toMap().toSortedMap()
