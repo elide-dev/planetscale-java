@@ -53,6 +53,21 @@ object PlanetscaleBuild {
         }
 
         extensions.getByType(PublishingExtension::class.java).apply {
+            repositories {
+                maven {
+                    this.name = "GitHubPackages"
+                    url = uri("https://maven.pkg.github.com/elide-dev/planetscale-java")
+                    credentials {
+                        username = project.findProperty("gpr.user") as? String ?: System.getenv("GITHUB_ACTOR")
+                        password = project.findProperty("gpr.key") as? String ?: System.getenv("GITHUB_ACTOR")
+                    }
+                }
+            }
+
+            publications.create("maven", MavenPublication::class.java) {
+                from(project.components.getByName("kotlin"))
+            }
+
             publications.withType(MavenPublication::class.java) {
                 artifactId = name
 
