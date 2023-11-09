@@ -26,6 +26,9 @@ on:
       PUBLISH_TOKEN:
         required: true
         description: "Publishing token"
+      GPG_PRIVATE_KEY:
+        required: true
+        description: "GPG private key"
 
 env:
   CI: true

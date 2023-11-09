@@ -94,6 +94,7 @@ jobs:
     secrets:
       BUILDLESS_APIKEY: ${{ secrets.BUILDLESS_APIKEY }}
       PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
     permissions:
       id-token: write
       contents: read
