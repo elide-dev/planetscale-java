@@ -149,6 +149,7 @@ jobs:
     runs-on: ${{ vars.RUNNER || inputs.runner || 'ubuntu-latest' }}
     permissions:
       actions: read
+      checks: write
       id-token: write
     steps:
       - name: "Setup: Artifacts"
