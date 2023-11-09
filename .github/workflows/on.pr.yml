@@ -29,7 +29,7 @@ permissions:
 jobs:
   ## Stage: Build Library
   build-library:
-    name: "Build: Library"
+    name: "Build"
     uses: ./.github/workflows/module.build.yml
     secrets: inherit
     permissions:
@@ -41,7 +41,7 @@ jobs:
 
   ## Stage: Check CodeQL
   checks-codeql:
-    name: "Checks"
+    name: "Build"
     uses: ./.github/workflows/module.codeql.yml
     secrets: inherit
     permissions:
