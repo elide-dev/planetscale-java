@@ -1,7 +1,12 @@
 name: "CI"
 
 on:
-  ## Event: PR
+  ## Releases
+  release:
+    types:
+      - created
+
+  ## CI
   push:
     branches:
       - main
@@ -72,4 +77,4 @@ jobs:
       packages: write
     with:
       snapshot: true
-      live: true
+      live: ${{ github.event_name == 'release' }}
