@@ -43,7 +43,7 @@ jobs:
 
   ## Stage: Check CodeQL
   checks-codeql:
-    name: "Build"
+    name: "Checks"
     uses: ./.github/workflows/module.codeql.yml
     secrets: inherit
     permissions:
