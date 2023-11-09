@@ -8,7 +8,6 @@
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/8053/badge)](https://www.bestpractices.dev/projects/8053)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=elide-dev_planetscale-java&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=elide-dev_planetscale-java)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=elide-dev_planetscale-java&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=elide-dev_planetscale-java)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=elide-dev_planetscale-java&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=elide-dev_planetscale-java)
 
 > **Note**
 > Under construction; use at your own risk
