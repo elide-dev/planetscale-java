@@ -3,6 +3,7 @@ import PlanetscaleBuild.publishable
 plugins {
     id("common-conventions.kotlin")
     id("planetscale-publishable.klib")
+    id(libs.plugins.sonar.get().pluginId)
     `version-catalog`
 }
 
@@ -34,4 +35,8 @@ catalog {
             "driver",
         ))
     }
+}
+
+sonar {
+    isSkipProject = true
 }
