@@ -32,3 +32,23 @@ jobs:
       pull-requests: read
     with:
       graph: generate-and-submit
+
+  ## Checks: CodeQL
+  checks-codeql:
+    uses: ./.github/workflows/module.codeql.yml
+    secrets: inherit
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    with: {}
+
+  ## Checks CodeQL
+  checks-detekt:
+    uses: ./.github/workflows/module.detekt.yml
+    secrets: inherit
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    with: {}

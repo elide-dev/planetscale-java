@@ -1,26 +1,28 @@
-name: Detekt
+name: "Checks: Detekt"
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  ## Manual dispatch
+  workflow_dispatch: {}
+
+  ## Sub-workflow call
+  workflow_call: {}
+
+  ## Scheduled Checks
   schedule:
      - cron: '29 21 * * 0'
-
-  workflow_dispatch: {}
 
 env:
   DETEKT_RELEASE_TAG: v1.15.0
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  scan:
-    name: Scan
+  check-detekt:
+    name: "Checks: Detekt"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Get Detekt download URL
+    - name: "Setup: Checkout"
+      uses: actions/checkout@v3
+    - name: "Setup: Detekt download URL"
       id: detekt_info
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,7 +53,7 @@ jobs:
         echo "download_url=$DETEKT_DOWNLOAD_URL" >> $GITHUB_OUTPUT
 
     # Sets up the detekt cli
-    - name: Setup Detekt
+    - name: "Setup: Detekt"
       run: |
         dest=$( mktemp -d )
         curl --request GET \
@@ -63,7 +65,7 @@ jobs:
         echo $dest >> $GITHUB_PATH
 
     # Performs static analysis using Detekt
-    - name: Run Detekt
+    - name: "Checks: Detekt"
       continue-on-error: true
       run: |
         detekt --input ${{ github.workspace }} --report sarif:${{ github.workspace }}/detekt.sarif.json
@@ -71,7 +73,7 @@ jobs:
     # Modifies the SARIF output produced by Detekt so that absolute URIs are relative
     # This is so we can easily map results onto their source files
     # This can be removed once relative URI support lands in Detekt: https://git.io/JLBbA
-    - name: Make artifact location URIs relative
+    - name: "Fixup: Relativize SARIF"
       continue-on-error: true
       run: |
         echo "$(
@@ -82,7 +84,8 @@ jobs:
         )" > ${{ github.workspace }}/detekt.sarif.json
 
     # Uploads results to GitHub repository using the upload-sarif action
-    - uses: github/codeql-action/upload-sarif@v2
+    - name: "Report: Upload SARIF"
+      uses: github/codeql-action/upload-sarif@v2
       with:
         # Path to SARIF file relative to the root of the repository
         sarif_file: ${{ github.workspace }}/detekt.sarif.json

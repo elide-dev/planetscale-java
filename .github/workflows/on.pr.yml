@@ -37,3 +37,23 @@ jobs:
       checks: write
       pull-requests: read
     with: {}
+
+  ## Stage: Check CodeQL
+  checks-codeql:
+    uses: ./.github/workflows/module.codeql.yml
+    secrets: inherit
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    with: {}
+
+  ## Stage: Check CodeQL
+  checks-detekt:
+    uses: ./.github/workflows/module.detekt.yml
+    secrets: inherit
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    with: {}
