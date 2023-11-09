@@ -3,6 +3,7 @@ import PlanetscaleBuild.publishable
 plugins {
     id("common-conventions.kotlin")
     id("planetscale-publishable.klib")
+    id(libs.plugins.sonar.get().pluginId)
 }
 
 dependencies {
@@ -14,3 +15,7 @@ publishable(
     name = PlanetscaleBuild.Library.DRIVER,
     description = "Planetscale JDBC meta-driver",
 )
+
+sonar {
+    isSkipProject = true
+}

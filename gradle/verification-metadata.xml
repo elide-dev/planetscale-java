@@ -8,6 +8,7 @@
          <trust file=".*-javadoc[.]jar" regex="true"/>
          <trust file=".*-sources[.]jar" regex="true"/>
          <trust file="groovy-.*" regex="true"/>
+         <trust file="github-dependency-graph-gradle-plugin-.*" regex="true"/>
       </trusted-artifacts>
       <trusted-keys>
          <trusted-key id="015479e1055341431b4545ab72475fd306b9cab7" group="com.googlecode.javaewah" name="JavaEWAH" version="1.2.3"/>
