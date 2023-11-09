@@ -89,8 +89,7 @@ jobs:
             build
             test
             check
-            koverXmlReport
-            sonar
+            perMerge
             --scan
             --warning-mode=none
             --dependency-verification=lenient
