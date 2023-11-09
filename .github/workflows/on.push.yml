@@ -22,7 +22,7 @@ permissions:
 jobs:
   ## Build Library
   build-library:
-    name: "CI: Build"
+    name: "Build"
     uses: ./.github/workflows/module.build.yml
     secrets: inherit
     permissions:
@@ -35,6 +35,7 @@ jobs:
 
   ## Checks: CodeQL
   checks-codeql:
+    name: "Checks"
     uses: ./.github/workflows/module.codeql.yml
     secrets: inherit
     permissions:
@@ -45,6 +46,7 @@ jobs:
 
   ## Checks CodeQL
   checks-detekt:
+    name: "Checks"
     uses: ./.github/workflows/module.detekt.yml
     secrets: inherit
     permissions:
