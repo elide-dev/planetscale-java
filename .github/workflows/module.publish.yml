@@ -23,6 +23,9 @@ on:
       BUILDLESS_APIKEY:
         required: true
         description: "API key for build caching"
+      PUBLISH_TOKEN:
+        required: true
+        description: "Publishing token"
 
 env:
   CI: true
@@ -157,8 +160,8 @@ jobs:
         env:
           CI: true
           BUILDLESS_APIKEY: ${{ secrets.BUILDLESS_APIKEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+          GITHUB_ACTOR: ${{ vars.PUBLISH_ACTOR }}
         with:
           cache-read-only: false
           arguments: |

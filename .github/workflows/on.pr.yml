@@ -89,9 +89,11 @@ jobs:
   deploy-snapshot:
     name: "Publish"
     uses: ./.github/workflows/module.publish.yml
-    secrets: inherit
     if: false  # TODO: enable with label
     needs: ['build-library', 'checks-codeql', 'checks-detekt', 'checks-dependencies', 'checks-scorecard']
+    secrets:
+      BUILDLESS_APIKEY: ${{ secrets.BUILDLESS_APIKEY }}
+      PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
     permissions:
       id-token: write
       contents: read
