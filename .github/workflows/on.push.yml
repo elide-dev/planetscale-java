@@ -15,6 +15,9 @@ on:
       - "**/*.properties"
       - "gradle/**"
 
+permissions:
+  contents: read
+
 jobs:
   ## Build Library
   build-library:
