@@ -65,10 +65,27 @@ public abstract class AbstractPlanetscaleAdapter : PlanetscaleAdapter, Closeable
     /**
      * TBD.
      */
+    public fun buildUri(config: PlanetscaleConfig): URI {
+        return config.toURI()
+    }
+
+    /**
+     * TBD.
+     */
+    public fun renderedConnectionString(config: PlanetscaleConfig): String {
+        return StringBuilder().apply {
+            append("jdbc:")
+            append(buildUri(config).toString())
+        }.toString()
+    }
+
+    /**
+     * TBD.
+     */
     protected open fun PlanetscaleConfig.connectBacking(uri: URI, info: Properties?): PlanetscaleConnection {
         return withDriver { driver ->
             driver.connect(toURI().toString(), info).let { connection ->
-                object: PlanetscaleConnection, Connection by connection {
+                object : PlanetscaleConnection, Connection by connection {
                     override val adapter: AbstractPlanetscaleAdapter get() = this@AbstractPlanetscaleAdapter
                 }
             }
@@ -78,7 +95,7 @@ public abstract class AbstractPlanetscaleAdapter : PlanetscaleAdapter, Closeable
     /**
      * TBD.
      */
-    protected abstract fun createDriver(): Driver
+    public abstract fun createDriver(): Driver
 
     /**
      * TBD.

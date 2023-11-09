@@ -32,7 +32,7 @@ public data object Constants {
     }
 
     public data object Prefix {
-        public const val MYSQL: String = "jdbc:mysql:"
+        public const val MYSQL: String = "mysql:"
         public const val REPLICATION: String = "replication:"
         public const val H2: String = "jdbc:h2:mem"
         public const val PLANETSCALE: String = "jdbc:planetscale:"

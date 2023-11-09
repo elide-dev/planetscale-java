@@ -2,10 +2,10 @@
 
 package com.planetscale.jvm
 
-import com.planetscale.jvm.param.Defaults
-import com.planetscale.jvm.param.ParameterSource
 import com.planetscale.jvm.PlanetscaleParameter.EnableBoost
 import com.planetscale.jvm.driver.Constants
+import com.planetscale.jvm.param.Defaults
+import com.planetscale.jvm.param.ParameterSource
 import java.net.URI
 import java.util.Properties
 import java.util.SortedMap
@@ -19,7 +19,7 @@ public interface PlanetscaleConfig {
         /**
          * TBD.
          */
-        @JvmRecord public data class PlanetscaleConfigState internal constructor (
+        @JvmRecord public data class PlanetscaleConfigState internal constructor(
             override val uri: URI,
             override val credential: PlanetscaleCredential,
             val hosts: List<String>,
@@ -45,6 +45,7 @@ public interface PlanetscaleConfig {
          */
         private fun extractHosts(uri: URI): List<String> {
             return uri.toString()
+                .substringAfter("://")
                 .substringAfter("@")
                 .substringBefore("/")
                 .trim()
@@ -63,9 +64,11 @@ public interface PlanetscaleConfig {
          * TBD.
          */
         @JvmStatic public fun parseUri(uri: String): URI {
-            return if (!uri.startsWith("jdbc:")) error("Cannot parse non-JDBC URIs") else URI.create(
+            return if (!uri.startsWith("jdbc:")) {
+                error("Cannot parse non-JDBC URIs")
+            } else URI.create(
                 // should be `planetscale://...`
-                uri.drop("jdbc:".length)
+                uri.drop("jdbc:".length),
             )
         }
 
@@ -95,7 +98,7 @@ public interface PlanetscaleConfig {
                     hosts = extractHosts(uri),
                     extra = extraParamsOnly(params),
                     enableBoost = EnableBoost.of(
-                        EnableBoost.resolveOr(uri, params, null, Defaults.enableBoost)
+                        EnableBoost.resolveOr(uri, params, null, Defaults.enableBoost),
                     ),
                 )
             }
@@ -134,7 +137,7 @@ public interface PlanetscaleConfig {
     /**
      * TBD.
      */
-    public val credential: PlanetscaleCredential
+    public val credential: PlanetscaleCredential?
 
     /**
      * TBD.

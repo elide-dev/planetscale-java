@@ -51,26 +51,30 @@ public class PlanetscaleMysqlDriver : AbstractPlanetscaleAdapter() {
         // Resolve symbolic host names to their actual targets.
         @JvmStatic public fun resolveHostSymbols(target: String): String {
             // safeguard: if it contains more than one period, it's a hostname
-            return if (target.count { it == '.' } > 1) target else when (target) {
-                // covers literal `aws`
-                Constants.SymbolicHosts.AWS -> awsEndpoint()
+            return if (target.count { it == '.' } > 1) {
+                target
+            } else {
+                when (target) {
+                    // covers literal `aws`
+                    Constants.SymbolicHosts.AWS -> awsEndpoint()
 
-                // covers literal `gcp`
-                Constants.SymbolicHosts.GCP -> gcpEndpoint()
+                    // covers literal `gcp`
+                    Constants.SymbolicHosts.GCP -> gcpEndpoint()
 
-                else -> when {
-                    // covers `<region>.aws`
-                    target.endsWith(Constants.SymbolicHosts.AWS) -> awsEndpoint(
-                        target.removeSuffix(Constants.SymbolicHosts.AWS).dropLast(1)
-                    )
+                    else -> when {
+                        // covers `<region>.aws`
+                        target.endsWith(Constants.SymbolicHosts.AWS) -> awsEndpoint(
+                            target.removeSuffix(Constants.SymbolicHosts.AWS).dropLast(1),
+                        )
 
-                    // covers `<region>.gcp`
-                    target.endsWith(Constants.SymbolicHosts.GCP) -> gcpEndpoint(
-                        target.removeSuffix(Constants.SymbolicHosts.GCP).dropLast(1)
-                    )
+                        // covers `<region>.gcp`
+                        target.endsWith(Constants.SymbolicHosts.GCP) -> gcpEndpoint(
+                            target.removeSuffix(Constants.SymbolicHosts.GCP).dropLast(1),
+                        )
 
-                    // otherwise, we don't recognize it, and it should be preserved
-                    else -> target
+                        // otherwise, we don't recognize it, and it should be preserved
+                        else -> target
+                    }
                 }
             }
         }
@@ -90,58 +94,70 @@ public class PlanetscaleMysqlDriver : AbstractPlanetscaleAdapter() {
 
     private fun PlanetscaleConfig.endpoints(): StringBuilder = StringBuilder().apply {
         if (multiHost()) {
-            append(targetHosts().map {
-                StringBuilder().appendHost(resolveHostSymbols(it))
-            }.joinToString(","))
+            append(
+                targetHosts().map {
+                    StringBuilder().appendHost(resolveHostSymbols(it))
+                }.joinToString(","),
+            )
         } else {
-            appendHost(targetHosts().first())
+            appendHost(resolveHostSymbols(targetHosts().first()))
         }
     }
 
     private fun PlanetscaleConfig.sessionVariables(): List<Pair<String, String>>? {
-        return if (!enableBoost()) null else listOf(
-            PlanetscaleParameter.EnableBoost.option.paramName to Constants.StringValue.TRUE,
-        )
+        return if (!enableBoost()) {
+            null
+        } else {
+            listOf(
+                PlanetscaleParameter.EnableBoost.option.paramName to Constants.StringValue.TRUE,
+            )
+        }
     }
 
     private fun PlanetscaleConfig.driverParameters(): List<Pair<String, String>> {
-        return defaultParams.plus(extraParams().mapNotNull {
-            if (it.value.isNullOrEmpty() || it.value.isBlank()) {
-                null
-            } else {
-                it.key to it.value
-            }
-        }).toSortedMap().toList().plus(when (val sessionVariables = sessionVariables()) {
-            null -> emptyList()
-            else -> listOf(
-                Constants.DriverParams.SESSION_VARIABLES to
-                        sessionVariables.joinToString(separator = ",") { (k, v) -> "$k=$v" }
-            )
-        })
+        return defaultParams.plus(
+            extraParams().mapNotNull {
+                if (it.value.isNullOrEmpty() || it.value.isBlank()) {
+                    null
+                } else {
+                    it.key to it.value
+                }
+            },
+        ).toSortedMap().toList().plus(
+            when (val sessionVariables = sessionVariables()) {
+                null -> emptyList()
+                else -> listOf(
+                    Constants.DriverParams.SESSION_VARIABLES to
+                        sessionVariables.joinToString(separator = ",") { (k, v) -> "$k=$v" },
+                )
+            },
+        )
     }
 
     override fun PlanetscaleConfig.toURI(): URI {
-        return URI.create(StringBuilder().apply {
-            append(Constants.Prefix.MYSQL)
-            if (multiHost()) append(Constants.Prefix.REPLICATION)
-            append("//")
-            append(credential.toUriInfo())
-            append("@")
-            append(endpoints())
-            append("/")
-            append(credential.database)
-            append("?")
-            driverParameters().joinToString("&") { (k, v) ->
-                append(k)
-                append("=")
-                append(v)
-            }
-        }.toString())
+        return URI.create(
+            StringBuilder().apply {
+                append(Constants.Prefix.MYSQL)
+                if (multiHost()) append(Constants.Prefix.REPLICATION)
+                append("//")
+                credential?.let { append(it.toUriInfo()) }
+                append("@")
+                append(endpoints())
+                append("/")
+                credential?.let { append(it.database) }
+                append("?")
+                driverParameters().joinToString("&") { (k, v) ->
+                    append(k)
+                    append("=")
+                    append(v)
+                }
+            }.toString(),
+        )
     }
 
     override fun createDriver(): Driver = DriverManager.drivers().filter {
         it.javaClass.canonicalName == Constants.MYSQL_DRIVER
     }.findFirst().orElse(null) ?: error(
-        "Failed to resolve MySQL driver: check your classpath?"
+        "Failed to resolve MySQL driver: check your classpath?",
     )
 }

@@ -2,14 +2,10 @@ package com.planetscale.jvm.h2
 
 import com.planetscale.jvm.PlanetscaleConfig
 import com.planetscale.jvm.driver.AbstractPlanetscaleAdapter
-import com.planetscale.jvm.driver.Constants
 import java.net.URI
-import java.sql.Connection
 import java.sql.Driver
 import java.sql.DriverManager
-import java.sql.DriverPropertyInfo
 import java.util.*
-import java.util.logging.Logger
 
 /**
  * TBD.
@@ -20,8 +16,9 @@ public class PlanetscaleH2Driver : AbstractPlanetscaleAdapter() {
     }
 
     override fun PlanetscaleConfig.toURI(): URI {
+        val dbname = credential?.database ?: "planetscale-local"
         return URI.create(
-            "jdbc:h2:mem:${credential.database};MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;"
+            "jdbc:h2:mem:$dbname;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;",
         )
     }
 
@@ -29,7 +26,7 @@ public class PlanetscaleH2Driver : AbstractPlanetscaleAdapter() {
         return DriverManager.drivers().filter {
             it.javaClass.canonicalName == H2_DRIVER
         }.findFirst().orElse(null) ?: error(
-            "Failed to resolve H2 driver: check your classpath?"
+            "Failed to resolve H2 driver: check your classpath?",
         )
     }
 }

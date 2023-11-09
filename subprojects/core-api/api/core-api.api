@@ -149,15 +149,17 @@ public final class com/planetscale/jvm/PlanetscaleParameter$EnableBoost$Companio
 
 public abstract class com/planetscale/jvm/driver/AbstractPlanetscaleAdapter : com/planetscale/jvm/PlanetscaleAdapter, java/io/Closeable, java/lang/AutoCloseable {
 	public fun <init> ()V
+	public final fun buildUri (Lcom/planetscale/jvm/PlanetscaleConfig;)Ljava/net/URI;
 	public fun close ()V
 	public fun configure (Lcom/planetscale/jvm/PlanetscaleConfig;)V
 	public fun connect (Ljava/lang/String;Ljava/util/Properties;)Ljava/sql/Connection;
 	protected fun connectBacking (Lcom/planetscale/jvm/PlanetscaleConfig;Ljava/net/URI;Ljava/util/Properties;)Lcom/planetscale/jvm/PlanetscaleConnection;
-	protected abstract fun createDriver ()Ljava/sql/Driver;
+	public abstract fun createDriver ()Ljava/sql/Driver;
 	public fun getMajorVersion ()I
 	public fun getMinorVersion ()I
 	public fun getParentLogger ()Ljava/util/logging/Logger;
 	public fun getPropertyInfo (Ljava/lang/String;Ljava/util/Properties;)[Ljava/sql/DriverPropertyInfo;
+	public final fun renderedConnectionString (Lcom/planetscale/jvm/PlanetscaleConfig;)Ljava/lang/String;
 	protected abstract fun toURI (Lcom/planetscale/jvm/PlanetscaleConfig;)Ljava/net/URI;
 	public fun validate ()V
 	protected fun withDriver (Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;

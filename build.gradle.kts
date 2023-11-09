@@ -69,6 +69,7 @@ subprojects {
 
         kotlin {
             target("**/*.kt")
+            targetExclude("**/test/**/*.kt")
             ktlint(libs.versions.ktlint.get())
         }
     }
