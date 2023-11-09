@@ -7,8 +7,8 @@
          <trust file="gradle-8.4-src.zip"/>
          <trust file=".*-javadoc[.]jar" regex="true"/>
          <trust file=".*-sources[.]jar" regex="true"/>
-         <trust file="groovy-.*" regex="true"/>
          <trust file="github-dependency-graph-gradle-plugin-.*" regex="true"/>
+         <trust file="groovy-.*" regex="true"/>
       </trusted-artifacts>
       <trusted-keys>
          <trusted-key id="015479e1055341431b4545ab72475fd306b9cab7" group="com.googlecode.javaewah" name="JavaEWAH" version="1.2.3"/>
@@ -26,11 +26,15 @@
          <trusted-key id="19beab2d799c020f17c69126b16698a4adf4d638">
             <trusting group="org.checkerframework" name="checker-qual" version="3.12.0"/>
             <trusting group="org.checkerframework" name="checker-qual" version="3.33.0"/>
+            <trusting group="org.checkerframework" name="checker-qual" version="3.37.0"/>
          </trusted-key>
          <trusted-key id="1a55f091ad28c07f831fa44d7905de25c78ad456" group="com.google.protobuf"/>
          <trusted-key id="1bd97a6a154e7810ee0bc832e2f38302c8075e3d" group="org.gradle.toolchains" name="foojay-resolver" version="0.7.0"/>
          <trusted-key id="1d0a8b5e77c678a7c724445abf984b4145ea13f7" group="com.squareup" name="javapoet" version="1.13.0"/>
-         <trusted-key id="1d2c7ef8ada0f794b58c7c63436902af59edf60e" group="dev.equo.ide" name="solstice" version="1.3.1"/>
+         <trusted-key id="1d2c7ef8ada0f794b58c7c63436902af59edf60e">
+            <trusting group="dev.equo.ide" name="solstice" version="1.3.1"/>
+            <trusting group="dev.equo.ide" name="solstice" version="1.7.3"/>
+         </trusted-key>
          <trusted-key id="24a43606bc3dd75dd8af7d283fcfa3b530afdce3" group="nl.littlerobots.vcu" name="plugin" version="0.8.1"/>
          <trusted-key id="24d04176586361fda94ee0315f7786df73e61f56" group="com.google.devtools.ksp"/>
          <trusted-key id="28118c070cb22a0175a2e8d43d12ca2ac19f3181" group="^com[.]fasterxml($|([.].*))" regex="true"/>
@@ -81,7 +85,10 @@
          <trusted-key id="7616eb882daf57a11477aaf559a252fb1199d873" group="com.google.code.findbugs" name="jsr305" version="3.0.2"/>
          <trusted-key id="7b121b76a7ed6ce6e60ad51784e913a8e3a748c0" group="org.bouncycastle"/>
          <trusted-key id="7c669810892cbd3148fa92995b05ccde140c2876" group="org.eclipse.jgit"/>
-         <trusted-key id="7fe5e98df3a5c0dc34663ab7c1add37ca0069309" group="org.spdx" name="spdx-gradle-plugin" version="0.1.0"/>
+         <trusted-key id="7fe5e98df3a5c0dc34663ab7c1add37ca0069309">
+            <trusting group="org.spdx" name="spdx-gradle-plugin" version="0.1.0"/>
+            <trusting group="org.spdx" name="spdx-gradle-plugin" version="0.3.0"/>
+         </trusted-key>
          <trusted-key id="82c9ec0e52c47a936a849e0113d979595e6d01e1" group="org.apache.maven.shared" name="maven-shared-utils" version="3.3.4"/>
          <trusted-key id="84789d24df77a32433ce1f079eb80e92eb2135b1">
             <trusting group="org.codehaus.mojo"/>
@@ -138,14 +145,20 @@
             <trusting group="org.jetbrains.kotlinx"/>
             <trusting group="^org[.]jetbrains[.]kotlinx($|([.].*))" regex="true"/>
          </trusted-key>
-         <trusted-key id="e9cc3cd1ae59e851e4db3fa350ffd7487d34b5b9" group="io.reactivex.rxjava3" name="rxjava" version="3.1.3"/>
+         <trusted-key id="e9cc3cd1ae59e851e4db3fa350ffd7487d34b5b9">
+            <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.3"/>
+            <trusting group="io.reactivex.rxjava3" name="rxjava" version="3.1.6"/>
+         </trusted-key>
          <trusted-key id="ead41e9eb6d49d461e29925adfb26dda74ac00c9" group="^com[.]osacky($|([.].*))" regex="true"/>
          <trusted-key id="eafc1f3b2fced6afd046c7d5734aef3d43509290" group="org.osgi"/>
          <trusted-key id="eb1b3de71713c9ec2e87cc26ee92349ad86de446" group="com.google.j2objc" name="j2objc-annotations" version="2.8"/>
          <trusted-key id="ebb4a00ddefb45874c6984d3fdc09e28df98a023" group="io.grpc" name="grpc-kotlin-stub" version="1.3.0"/>
          <trusted-key id="ee0ca873074092f806f59b65d364abaa39a47320" group="com.google.errorprone"/>
          <trusted-key id="f06e94a01b835825e6ab4da369b8e32e23138662" group="org.spdx"/>
-         <trusted-key id="f254b35617dc255d9344bcfa873a8e86b4372146" group="org.codehaus.plexus" name="plexus-interpolation" version="1.26"/>
+         <trusted-key id="f254b35617dc255d9344bcfa873a8e86b4372146">
+            <trusting group="org.codehaus.plexus"/>
+            <trusting group="org.codehaus.plexus" name="plexus-interpolation" version="1.26"/>
+         </trusted-key>
          <trusted-key id="f3184bcd55f4d016e30d4c9bf42e87f9665015c9" group="org.jsoup" name="jsoup" version="1.15.3"/>
          <trusted-key id="f3d15b8ff9902805de4be6b18dc6f3d0abdbd017" group="org.codehaus.plexus" name="plexus-sec-dispatcher" version="2.0"/>
          <trusted-key id="f4fd8d1ea4a590d774a6ba777b534d9959cf9eac" group="biz.aQute.bnd"/>
@@ -190,9 +203,22 @@
             <sha256 value="6d0eb536552fe425215b92fb617fd43f74520add39403414137a1512404f1050" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
+      <component group="com.adarshr" name="gradle-test-logger-plugin" version="4.0.0">
+         <artifact name="gradle-test-logger-plugin-4.0.0.jar">
+            <sha256 value="e678683a33d2bc835671bdd4e58710004ad1d9316aa9f9a54cfe22419a4f6ef9" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+         <artifact name="gradle-test-logger-plugin-4.0.0.module">
+            <sha256 value="8c444b2c7fd44200cd4ab3182722701c20975a43b23c7e9edf9b0226049abdc2" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
       <component group="com.adarshr.test-logger" name="com.adarshr.test-logger.gradle.plugin" version="3.2.0">
          <artifact name="com.adarshr.test-logger.gradle.plugin-3.2.0.pom">
             <sha256 value="aa5e9a9ac329d65e5523e460c957d499a96aa3f154273428c44342c41e7b0419" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
+      <component group="com.adarshr.test-logger" name="com.adarshr.test-logger.gradle.plugin" version="4.0.0">
+         <artifact name="com.adarshr.test-logger.gradle.plugin-4.0.0.pom">
+            <sha256 value="b286d372acd2dae1b8bc7b20fe8ba84f8f6489731d881a41f3736a602085a2d7" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
       <component group="com.azure" name="azure-sdk-bom" version="1.2.14">
@@ -211,6 +237,11 @@
       <component group="com.diffplug.spotless" name="com.diffplug.spotless.gradle.plugin" version="6.21.0">
          <artifact name="com.diffplug.spotless.gradle.plugin-6.21.0.pom">
             <sha256 value="fe7d5f675a2c88613a1fd6ec4c98f6f27d9762d62cc08f45870906f313ec4801" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
+      <component group="com.diffplug.spotless" name="com.diffplug.spotless.gradle.plugin" version="6.22.0">
+         <artifact name="com.diffplug.spotless.gradle.plugin-6.22.0.pom">
+            <sha256 value="188ed02bfa5cf7dfe5aec9948998d843e8351cb3fa70cc1fb5f894e049c59cd1" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
       <component group="com.fasterxml" name="oss-parent" version="38">
@@ -282,6 +313,11 @@
       <component group="com.osacky.doctor" name="com.osacky.doctor.gradle.plugin" version="0.8.1">
          <artifact name="com.osacky.doctor.gradle.plugin-0.8.1.pom">
             <sha256 value="7a1de6962aa2e0da91cdd705bf055b48afb56a25c7f44204c81e0c7cdbae8a59" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
+      <component group="com.osacky.doctor" name="com.osacky.doctor.gradle.plugin" version="0.9.0">
+         <artifact name="com.osacky.doctor.gradle.plugin-0.9.0.pom">
+            <sha256 value="bed8f14283d444f07817cecaa35f50a622fd58a20a26d38f7d6220f9490f064a" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
       <component group="com.osacky.doctor" name="doctor-plugin" version="0.8.1">
@@ -529,12 +565,25 @@
             <sha256 value="a98c7664fa20627c6a496e874f8d32511f278ea5d7c1800465f18b21af63b872" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
+      <component group="org.sonarqube" name="org.sonarqube.gradle.plugin" version="4.4.1.3373">
+         <artifact name="org.sonarqube.gradle.plugin-4.4.1.3373.pom">
+            <sha256 value="37b316009dad2438e5102910e54ddb414a755cab23213d7dc9a712e35d8eabbf" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
       <component group="org.sonarsource.scanner.gradle" name="sonarqube-gradle-plugin" version="4.3.1.3277">
          <artifact name="sonarqube-gradle-plugin-4.3.1.3277.jar">
             <sha256 value="5b190556ed4ac5297282fbd3042dc1cebc455bc526860719d2bbdebe5f55065c" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
          <artifact name="sonarqube-gradle-plugin-4.3.1.3277.module">
             <sha256 value="bb5ee7208ec3e21cdfba95c2e595837508b96adf8b09eed8fa23a5710bd98683" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
+      <component group="org.sonarsource.scanner.gradle" name="sonarqube-gradle-plugin" version="4.4.1.3373">
+         <artifact name="sonarqube-gradle-plugin-4.4.1.3373.jar">
+            <sha256 value="39c349b63a650e5bb48a499304b2faf385410cf8613c875a22398f14b9bfb831" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+         <artifact name="sonarqube-gradle-plugin-4.4.1.3373.module">
+            <sha256 value="11206426c9be18ce39741b8c7d1721bfe414e99d964f69153c1796f1fb837bcc" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
       <component group="org.sonatype.oss" name="oss-parent" version="5">
@@ -556,6 +605,11 @@
       <component group="org.spdx.sbom" name="org.spdx.sbom.gradle.plugin" version="0.1.0">
          <artifact name="org.spdx.sbom.gradle.plugin-0.1.0.pom">
             <sha256 value="70e81b432b4e7076fe18a9c8e8bda7f4faf56a1050759791aef4ed14a01e9918" origin="Generated by Gradle" reason="Artifact is not signed"/>
+         </artifact>
+      </component>
+      <component group="org.spdx.sbom" name="org.spdx.sbom.gradle.plugin" version="0.3.0">
+         <artifact name="org.spdx.sbom.gradle.plugin-0.3.0.pom">
+            <sha256 value="345a8bb31a0eb53f978e41f4cfd1a5733044ff5260a47e72b3706b9426f907d3" origin="Generated by Gradle" reason="Artifact is not signed"/>
          </artifact>
       </component>
       <component group="org.spockframework" name="spock-bom" version="2.3-groovy-4.0">

@@ -15,7 +15,9 @@ val kotlinJavaTarget = JvmTarget.JVM_17
 val kotlinVersion = KotlinVersion.KOTLIN_2_0
 val lockDeps: String? by properties
 val kotlinLangVersion: String? by properties
+val kotlinSdkVersion = properties["kotlin.version"] as String?
 val defaultKotlinVersion = "2.0"
+val defaultKotlinSdkVersion = "1.9.20"
 val kotlinCompilerArgs = listOf<String>()
 
 group = PlanetscaleBuild.Library.GROUP
@@ -119,6 +121,15 @@ tasks.compileJava {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "org.jetbrains.kotlin" && requested.name.contains("stdlib")) {
+            useVersion(kotlinSdkVersion ?: defaultKotlinSdkVersion)
+            because("pin kotlin stdlib")
+        }
+    }
 }
 
 afterEvaluate {

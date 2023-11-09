@@ -249,9 +249,54 @@ dependencies {
 }
 ```
 
+## Library Hygiene
+
+This library is built with **Java 20**, targeting **Java 17** as a minimum baseline. If you need an earlier version of
+Java, let us know, and we can probably ship one for you (within reason).
+
+The following devops features are baked into the library's code or process:
+
+- **CI/CD:** Built, tested, and shipped from a cleanroom environment in Github Actions. CI runners are [monitored][7]
+  for security and compliance and updated regularly.
+
+- **Testing:** The library has reasonable [test coverage][8], and can be mocked under the hood with [H2][9].
+
+- **Integrity:** Dependencies are locked, hash-sealed and signature-checked. We also ship [SBOMs][15] with each release.
+
+- **Provenance:** [SLSA provenance][10] is issued during the release process, and releases are published to
+  [Sigstore][11]. Of course, releases are also signed with [PGP][12].
+
+- **API checks:** Each release of the library is stamped with API layout information, so that library consumer breakage
+  can be checked and enforced.
+
+- **Dependencies:** Depends on [MySQL/J][3] and [Kotlin][6]. Each integration library may have other dependencies, like
+  [Micronaut][5] or [GraalVM][4].
+
+- **Versioning:** Uses [Semantic Versioning](https://semver.org/).
+
+- **Contributions:** Uses [Developer Certificate of Origin][13] and [Contributor License Agreement][14] to ensure
+  contributions are properly licensed.
+
+- **Humans:** We are friendly people who are open to contributions, and we adopt a
+  [Code of Conduct](./CODE_OF_CONDUCT.md) which encourages good faith collaboration.
+
+- **License:** TBD, open source.
+
+
+Made with ❤️ by [Elide](https://elide.dev)
+
 [1]: https://planetscale.com/
 [2]: https://vitess.io/
 [3]: https://dev.mysql.com/downloads/connector/j/
 [4]: https://www.graalvm.org/
 [5]: https://micronaut.io/
 [6]: https://kotlinlang.org/
+[7]: https://app.stepsecurity.io
+[8]: https://app.codecov.io/gh/elide-dev/planetscale-java
+[9]: https://www.h2database.com/html/main.html
+[10]: https://slsa.dev/
+[11]: https://sigstore.dev/
+[12]: https://www.gnupg.org/
+[13]: https://developercertificate.org/
+[14]: ./.github/CLA.md
+[15]: https://spdx.dev/
