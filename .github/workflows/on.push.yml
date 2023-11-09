@@ -73,6 +73,7 @@ jobs:
     secrets: inherit
     needs: ['build-library', 'checks-codeql', 'checks-detekt', 'checks-scorecard']
     permissions:
+      id-token: write
       contents: read
       packages: write
     with:

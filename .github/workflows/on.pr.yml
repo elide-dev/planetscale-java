@@ -93,6 +93,7 @@ jobs:
     if: false  # TODO: enable with label
     needs: ['build-library', 'checks-codeql', 'checks-detekt', 'checks-dependencies', 'checks-scorecard']
     permissions:
+      id-token: write
       contents: read
       packages: write
     with:

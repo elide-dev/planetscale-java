@@ -73,6 +73,7 @@ jobs:
     environment:
       name: "snapshots"
     permissions:
+      id-token: write
       contents: read
       packages: write
     steps:
@@ -125,6 +126,7 @@ jobs:
     environment:
       name: "live"
     permissions:
+      id-token: write
       contents: read
       packages: write
     steps:
