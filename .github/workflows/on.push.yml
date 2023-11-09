@@ -3,18 +3,8 @@ name: "CI"
 on:
   ## Event: PR
   push:
-    paths:
-      ## Trigger: Global changes/release
-      - ".version"
-      - ".release"
-      - "gradle.properties"
-      - "*.kts"
-      - "**/*.kts"
-      - "**/*.kt"
-      - "**/*.java"
-      - "**/*.properties"
-      - "gradle/**"
-      - ".github/workflows/*.yml"
+    branches:
+      - main
 
 permissions:
   actions: read
