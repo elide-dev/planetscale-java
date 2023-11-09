@@ -20,6 +20,15 @@ val defaultKotlinVersion = "1.9"
 val defaultKotlinSdkVersion = "1.9.20"
 val kotlinCompilerArgs = listOf<String>()
 
+val forcedResolutions = listOf(
+    // https://github.com/elide-dev/planetscale-java/security/dependabot/4
+    "org.json:json" to ("20231013" to "elide-dev/planetscale-java/security/dependabot/4"),
+    // https://github.com/elide-dev/planetscale-java/security/dependabot/3
+    "com.google.guava:guava" to ("32.0.0" to "elide-dev/planetscale-java/security/dependabot/3"),
+    // https://github.com/elide-dev/planetscale-java/security/dependabot/2
+    "com.squareup.okio:okio" to ("3.4.0" to "elide-dev/planetscale-java/security/dependabot/2"),
+).toMap().toSortedMap()
+
 group = PlanetscaleBuild.Library.GROUP
 
 sourceSets {
@@ -128,6 +137,11 @@ configurations.all {
         if (requested.group == "org.jetbrains.kotlin" && requested.name.contains("stdlib")) {
             useVersion(kotlinSdkVersion ?: defaultKotlinSdkVersion)
             because("pin kotlin stdlib")
+        }
+        if (forcedResolutions.containsKey("${requested.group}:${requested.name}")) {
+            val (version, reason) = requireNotNull(forcedResolutions["${requested.group}:${requested.name}"])
+            useVersion(version)
+            because("pin ${requested.group}:${requested.name} for security reasons: $reason")
         }
     }
 }
