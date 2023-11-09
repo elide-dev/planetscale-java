@@ -35,7 +35,7 @@ concurrency:
 jobs:
   ## Stage: Download Artifacts
   download-artifacts:
-    name: "Setup: Download Artifacts"
+    name: "Setup: Artifacts"
     runs-on: ${{ vars.RUNNER || inputs.runner || 'ubuntu-latest' }}
     permissions:
       contents: read
@@ -55,9 +55,10 @@ jobs:
         with:
           java-version: ${{ inputs.java_version || vars.JVM_VERSION }}
           distribution: ${{ inputs.jvm || vars.JVM_VARIANT || 'zulu' }}
-      - name: "Stubbed"
-        id: download
-        run: echo "Deployment not yet implemented"
+      - name: "Setup: Artifacts"
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
+        with:
+          name: libraries-jvm
 
   ## Stage: Publish Snapshot
   publish-snapshot:
@@ -79,11 +80,19 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
+      - name: "Setup: Signing Keys"
+        uses: crazy-max/ghaction-import-gpg@82a020f1f7f605c65dd2449b392a52c3fcfef7ef
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
       - name: "Setup: JDK ${{ inputs.java_version || vars.JVM_VERSION }}"
         uses: actions/setup-java@0ab4596768b603586c0de567f2430c30f5b0d2b0 # v3.13.0
         with:
           java-version: ${{ inputs.java_version || vars.JVM_VERSION }}
           distribution: ${{ inputs.jvm || vars.JVM_VARIANT || 'zulu' }}
+      - name: "Setup: Artifacts"
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
+        with:
+          name: libraries-jvm
       - name: "Stubbed"
         run: echo "Deployment not yet implemented"
 
@@ -107,10 +116,18 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
+      - name: "Setup: Signing Keys"
+        uses: crazy-max/ghaction-import-gpg@82a020f1f7f605c65dd2449b392a52c3fcfef7ef
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
       - name: "Setup: JDK ${{ inputs.java_version || vars.JVM_VERSION }}"
         uses: actions/setup-java@0ab4596768b603586c0de567f2430c30f5b0d2b0 # v3.13.0
         with:
           java-version: ${{ inputs.java_version || vars.JVM_VERSION }}
           distribution: ${{ inputs.jvm || vars.JVM_VARIANT || 'zulu' }}
+      - name: "Setup: Artifacts"
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
+        with:
+          name: libraries-jvm
       - name: "Stubbed"
         run: echo "Deployment not yet implemented"
