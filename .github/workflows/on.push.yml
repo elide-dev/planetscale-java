@@ -18,8 +18,10 @@ on:
 jobs:
   ## Build Library
   build-library:
+    name: "CI: Build"
     uses: ./.github/workflows/module.build.yml
     secrets: inherit
     permissions:
       contents: "read"
-    with: {}
+    with:
+      graph: generate-and-submit
