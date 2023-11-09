@@ -32,6 +32,8 @@ jobs:
       pull-requests: read
     with:
       graph: generate-and-submit
+      signing: true
+      provenance: true
 
   ## Checks: CodeQL
   checks-codeql:
@@ -68,7 +70,7 @@ jobs:
     with: {}
 
   ## Deploy: Snapshots
-  deploy-snapshot:
+  publish:
     name: "Publish"
     uses: ./.github/workflows/module.publish.yml
     secrets: inherit
@@ -78,3 +80,4 @@ jobs:
       packages: write
     with:
       snapshot: true
+      live: true
