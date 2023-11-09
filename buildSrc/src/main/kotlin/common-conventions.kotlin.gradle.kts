@@ -12,11 +12,11 @@ plugins {
 val javaToolchainVersion = JavaVersion.VERSION_21
 val javaTarget = JavaVersion.VERSION_17
 val kotlinJavaTarget = JvmTarget.JVM_17
-val kotlinVersion = KotlinVersion.KOTLIN_2_0
+val kotlinVersion = KotlinVersion.KOTLIN_1_9
 val lockDeps: String? by properties
 val kotlinLangVersion: String? by properties
 val kotlinSdkVersion = properties["kotlin.version"] as String?
-val defaultKotlinVersion = "2.0"
+val defaultKotlinVersion = "1.9"
 val defaultKotlinSdkVersion = "1.9.20"
 val kotlinCompilerArgs = listOf<String>()
 

@@ -5,12 +5,12 @@ plugins {
     id("planetscale-publishable.klib")
     id("planetscale-connector.klib")
     alias(libs.plugins.ksp)
-//    alias(libs.plugins.micronaut.library)
+    alias(libs.plugins.micronaut.library)
 }
 
 dependencies {
     api(projects.subprojects.coreApi)
-//    ksp(mn.micronaut.inject.kotlin)
+    ksp(mn.micronaut.inject.kotlin)
 }
 
 kotlin {
