@@ -89,7 +89,7 @@ jobs:
             build
             test
             check
-            perMerge
+            preMerge
             --scan
             --warning-mode=none
             --dependency-verification=lenient

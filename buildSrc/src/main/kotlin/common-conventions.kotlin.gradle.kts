@@ -12,10 +12,10 @@ plugins {
 val javaToolchainVersion = JavaVersion.VERSION_20
 val javaTarget = JavaVersion.VERSION_17
 val kotlinJavaTarget = JvmTarget.JVM_17
-val kotlinVersion = KotlinVersion.KOTLIN_1_9
+val kotlinVersion = KotlinVersion.KOTLIN_2_0
 val lockDeps: String? by properties
 val kotlinLangVersion: String? by properties
-val defaultKotlinVersion = "1.9"
+val defaultKotlinVersion = "2.0"
 val kotlinCompilerArgs = listOf<String>()
 
 group = PlanetscaleBuild.Library.GROUP
