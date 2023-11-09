@@ -20,6 +20,10 @@ on:
   schedule:
     - cron: '41 8 * * 1'
 
+env:
+  CI: true
+  BUILDLESS_APIKEY: ${{ secrets.BUILDLESS_APIKEY }}
+
 permissions:
   contents: read
 

@@ -19,6 +19,10 @@ on:
       - "**/*.properties"
       - "gradle/**"
 
+env:
+  CI: true
+  BUILDLESS_APIKEY: ${{ secrets.BUILDLESS_APIKEY }}
+
 permissions:
   contents: read
 
@@ -29,4 +33,7 @@ jobs:
     secrets: inherit
     permissions:
       contents: "read"
+      id-token: "write"
+      checks: "write"
+      pull-requests: "read"
     with: {}
