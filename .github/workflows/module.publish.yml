@@ -1,0 +1,83 @@
+name: "Module: Publish"
+
+on:
+  ## Manual dispatch
+  workflow_dispatch: {}
+
+  ## Sub-workflow call
+  workflow_call:
+    inputs:
+      runner:
+        type: string
+        required: false
+        description: "Runner to use"
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+        description: "GitHub token"
+
+env:
+  CI: true
+
+# Read-only permissions by default.
+permissions:
+  contents: read
+
+# One active build per reference, per workflow.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ## Stage: Download Artifacts
+  download-artifacts:
+    name: "Setup: Download Artifacts"
+    runs-on: ${{ vars.RUNNER || inputs.runner || 'ubuntu-latest' }}
+    permissions:
+      contents: read
+    outputs:
+      artifacts: ${{ steps.download.outputs.artifacts }}
+    steps:
+      - name: "Setup: Harden Runner"
+        uses: step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423 # v2.6.0
+        with:
+          egress-policy: audit
+      - name: "Setup: Checkout"
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          fetch-depth: 0
+      - name: "Setup: JDK ${{ inputs.java_version || vars.JVM_VERSION }}"
+        uses: actions/setup-java@0ab4596768b603586c0de567f2430c30f5b0d2b0 # v3.13.0
+        with:
+          java-version: ${{ inputs.java_version || vars.JVM_VERSION }}
+          distribution: ${{ inputs.jvm || vars.JVM_VARIANT || 'zulu' }}
+      - name: "Stubbed"
+        id: download
+        run: echo "Deployment not yet implemented"
+
+  ## Stage: Publish Snapshot
+  publish-snapshot:
+    name: "Publish: Snapshot"
+    runs-on: ${{ vars.RUNNER || inputs.runner || 'ubuntu-latest' }}
+    needs: ['download-artifacts']
+    environment:
+      name: "snapshots"
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: "Setup: Harden Runner"
+        uses: step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423 # v2.6.0
+        with:
+          egress-policy: audit
+      - name: "Setup: Checkout"
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          fetch-depth: 0
+      - name: "Setup: JDK ${{ inputs.java_version || vars.JVM_VERSION }}"
+        uses: actions/setup-java@0ab4596768b603586c0de567f2430c30f5b0d2b0 # v3.13.0
+        with:
+          java-version: ${{ inputs.java_version || vars.JVM_VERSION }}
+          distribution: ${{ inputs.jvm || vars.JVM_VARIANT || 'zulu' }}
+      - name: "Stubbed"
+        run: echo "Deployment not yet implemented"

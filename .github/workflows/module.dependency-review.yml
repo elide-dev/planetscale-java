@@ -1,8 +1,16 @@
 name: "Checks: Dependency Review"
-on: [pull_request]
+
+on:
+  ## Manual dispatch
+  workflow_dispatch: {}
+
+  ## Sub-workflow call
+  workflow_call: {}
+
 
 permissions:
   contents: read
+  security-events: write
 
 jobs:
   dependency-review:

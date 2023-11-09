@@ -1,11 +1,15 @@
 name: "Check: Scorecard"
 
 on:
-  branch_protection_rule: {}
+  ## Manual dispatch
+  workflow_dispatch: {}
+
+  ## Sub-workflow call
+  workflow_call: {}
+
+  ## Scheduled checks
   schedule:
     - cron: '20 7 * * 2'
-  push:
-    branches: ["main"]
 
 # Declare default permissions as read only.
 permissions: read-all

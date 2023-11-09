@@ -54,3 +54,27 @@ jobs:
       contents: read
       security-events: write
     with: {}
+
+  ## Stage: Check Scorecard
+  checks-scorecard:
+    name: "Checks"
+    uses: ./.github/workflows/module.scorecards.yml
+    secrets: inherit
+    permissions:
+      security-events: write
+      id-token: write
+      contents: read
+      actions: read
+    with: {}
+
+  ## Deploy: Snapshots
+  deploy-snapshot:
+    name: "Publish"
+    uses: ./.github/workflows/module.publish.yml
+    secrets: inherit
+    needs: ['build-library', 'checks-codeql', 'checks-detekt', 'checks-scorecard']
+    permissions:
+      contents: read
+      packages: write
+    with:
+      snapshot: true

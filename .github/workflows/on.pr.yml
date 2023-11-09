@@ -60,3 +60,38 @@ jobs:
       contents: read
       security-events: write
     with: {}
+
+  ## Stage: Check Dependencies
+  checks-dependencies:
+    name: "Checks"
+    uses: ./.github/workflows/module.dependency-review.yml
+    secrets: inherit
+    permissions:
+      contents: read
+      security-events: write
+    with: {}
+
+  ## Stage: Check Scorecard
+  checks-scorecard:
+    name: "Checks"
+    uses: ./.github/workflows/module.scorecards.yml
+    secrets: inherit
+    permissions:
+      security-events: write
+      id-token: write
+      contents: read
+      actions: read
+    with: {}
+
+  ## Deploy: Snapshots
+  deploy-snapshot:
+    name: "Publish"
+    uses: ./.github/workflows/module.publish.yml
+    secrets: inherit
+    if: false  # TODO: enable with label
+    needs: ['build-library', 'checks-codeql', 'checks-detekt', 'checks-dependencies', 'checks-scorecard']
+    permissions:
+      contents: read
+      packages: write
+    with:
+      snapshot: true
