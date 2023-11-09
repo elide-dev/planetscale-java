@@ -10,6 +10,7 @@ plugins {
 
 dependencies {
     api(projects.subprojects.coreApi)
+    api(mn.micronaut.core)
     ksp(mn.micronaut.inject.kotlin)
 }
 
