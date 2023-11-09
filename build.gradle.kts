@@ -63,7 +63,8 @@ subprojects {
 
     sonar {
         properties {
-            property("sonar.sources", "src")
+            property("sonar.sources", "src/main/jvm")
+            property("sonar.tests", "src/test/jvm")
         }
     }
 }
