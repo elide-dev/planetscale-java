@@ -18,6 +18,8 @@ plugins {
 
     id(libs.plugins.sigstore.get().pluginId)
     id(libs.plugins.nexus.publish.get().pluginId)
+    `project-report`
+    idea
 }
 
 val stamp: String by properties

@@ -1,6 +1,11 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.tasks.bundling.Tar
+import org.gradle.api.tasks.bundling.Zip
+import org.gradle.jvm.tasks.Jar
 
 object PlanetscaleBuild {
     object Library {
@@ -22,14 +27,30 @@ object PlanetscaleBuild {
 
     fun Project.baseline() {
         // nothing yet
+        project.apply {
+            tasks.withType(Jar::class.java).configureEach {
+                isReproducibleFileOrder = true
+                isPreserveFileTimestamps = false
+            }
+            tasks.withType(Zip::class.java).configureEach {
+                isReproducibleFileOrder = true
+                isPreserveFileTimestamps = false
+            }
+            tasks.withType(Tar::class.java).configureEach {
+                isReproducibleFileOrder = true
+                isPreserveFileTimestamps = false
+            }
+        }
     }
 
-    fun Project.publishable(name: String, description: String) {
+    fun Project.publishable(name: String, description: String, action: MavenPublication.() -> Unit = {}) {
         baseline()
-        publishJavadocJar()
-        publishSourcesJar()
-        configureSigning()
-        configureSigstore()
+        if (project.properties["stamp"] == "true") {
+            publishJavadocJar()
+            publishSourcesJar()
+            configureSigning()
+            configureSigstore()
+        }
 
         extensions.getByType(PublishingExtension::class.java).apply {
             publications.withType(MavenPublication::class.java) {
@@ -54,6 +75,9 @@ object PlanetscaleBuild {
                         url.set("https://github.com/elide-dev/elide")
                     }
                 }
+
+                // let consumer customize
+                action.invoke(this)
             }
         }
     }

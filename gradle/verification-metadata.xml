@@ -130,6 +130,7 @@
          <trusted-key id="C8D37E9675158FF5B29B6D6452FC3551DA8DC57E">
             <trusting group="com.mysql"/>
             <trusting group="org.graalvm.buildtools"/>
+            <trusting group="^org[.]graalvm($|([.].*))" regex="true"/>
          </trusted-key>
          <trusted-key id="CF17E92C9FFA55316B5DB83901D734EE5EE9C3F8" group="org.eclipse.sisu"/>
          <trusted-key id="D112630C899F508198C09018105CB91CAC2AEE0E" group="dev.sigstore"/>

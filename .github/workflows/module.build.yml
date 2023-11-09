@@ -34,10 +34,14 @@ env:
   CI: true
   BUILDLESS_APIKEY: ${{ secrets.BUILDLESS_APIKEY }}
 
+# Read-only permissions by default.
 permissions:
-  contents: write
-  checks: write
-  id-token: write
+  contents: read
+
+# One active build per reference, per workflow.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   ## Stage: Build Library with Gradle
@@ -45,10 +49,10 @@ jobs:
     name: "Build Library"
     runs-on: ${{ vars.RUNNER || inputs.runner || 'ubuntu-latest' }}
     permissions:
-      contents: "read"
-      id-token: "write"
-      checks: "write"
-      pull-requests: "read"
+      contents: write
+      id-token: write
+      checks: write
+      pull-requests: read
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423 # v2.6.0

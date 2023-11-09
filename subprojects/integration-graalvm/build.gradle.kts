@@ -9,6 +9,7 @@ plugins {
 
 dependencies {
     api(projects.subprojects.coreApi)
+    api(libs.graalvm.sdk)
 }
 
 kotlin {
