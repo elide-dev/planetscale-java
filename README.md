@@ -1,6 +1,15 @@
 
 # Planetscale Connector/J
 
+[![CI](https://github.com/elide-dev/planetscale-java/actions/workflows/on.push.yml/badge.svg)](https://github.com/elide-dev/planetscale-java/actions/workflows/on.push.yml)
+[![codecov](https://codecov.io/gh/elide-dev/planetscale-java/graph/badge.svg?token=MRUx3BHbMG)](https://codecov.io/gh/elide-dev/planetscale-java)
+[![Java 21](https://img.shields.io/badge/Java-20-blue.svg?logo=oracle)](https://openjdk.org/projects/jdk/21/)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![GraalVM](https://img.shields.io/badge/GraalVM-23.x.x-blue.svg?logo=oracle)](https://www.graalvm.org/)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=elide-dev_planetscale-java&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=elide-dev_planetscale-java)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=elide-dev_planetscale-java&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=elide-dev_planetscale-java)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=elide-dev_planetscale-java&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=elide-dev_planetscale-java)
+
 > **Note**
 > Under construction; use at your own risk
 
@@ -261,6 +270,8 @@ The following devops features are baked into the library's code or process:
 
 - **Testing:** The library has reasonable [test coverage][8], and can be mocked under the hood with [H2][9].
 
+- **Analysis:** Linting and static analysis with [CodeQL][16], [Detekt][17], and [ktlint][18].
+
 - **Integrity:** Dependencies are locked, hash-sealed and signature-checked. We also ship [SBOMs][15] with each release.
 
 - **Provenance:** [SLSA provenance][10] is issued during the release process, and releases are published to
@@ -280,7 +291,13 @@ The following devops features are baked into the library's code or process:
 - **Humans:** We are friendly people who are open to contributions, and we adopt a
   [Code of Conduct](./CODE_OF_CONDUCT.md) which encourages good faith collaboration.
 
-- **License:** TBD, open source.
+- **License:** [MIT license](./LICENSE).
+
+
+### Build caching
+
+This library uses [Buildless][19] to cache build artifacts and accelerate builds. This cache project is public, so
+open-source contributors can use it, too. No setup is needed.
 
 
 Made with ❤️ by [Elide](https://elide.dev)
@@ -300,3 +317,7 @@ Made with ❤️ by [Elide](https://elide.dev)
 [13]: https://developercertificate.org/
 [14]: ./.github/CLA.md
 [15]: https://spdx.dev/
+[16]: https://securitylab.github.com/tools/codeql
+[17]: https://detekt.github.io/detekt/
+[18]: https://ktlint.github.io/
+[19]: https://less.build/
