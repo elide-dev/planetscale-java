@@ -1,4 +1,6 @@
-public final class com/planetscale/PlanetscaleFeature {
+public final class com/planetscale/PlanetscaleFeature : org/graalvm/nativeimage/hosted/Feature {
 	public fun <init> ()V
+	public fun beforeAnalysis (Lorg/graalvm/nativeimage/hosted/Feature$BeforeAnalysisAccess;)V
+	public fun isInConfiguration (Lorg/graalvm/nativeimage/hosted/Feature$IsInConfigurationAccess;)Z
 }
 
