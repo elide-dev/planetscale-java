@@ -91,7 +91,7 @@ jobs:
   publish-live:
     name: "Publish: Live"
     runs-on: ${{ vars.RUNNER || inputs.runner || 'ubuntu-latest' }}
-    needs: ['download-artifacts']
+    needs: ['download-artifacts', 'publish-snapshot']
     if: inputs.live
     environment:
       name: "live"
