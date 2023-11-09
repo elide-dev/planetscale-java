@@ -35,7 +35,9 @@ env:
   BUILDLESS_APIKEY: ${{ secrets.BUILDLESS_APIKEY }}
 
 permissions:
-  contents: read
+  contents: write
+  checks: write
+  id-token: write
 
 jobs:
   ## Stage: Build Library with Gradle
