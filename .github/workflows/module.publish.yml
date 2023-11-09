@@ -11,6 +11,14 @@ on:
         type: string
         required: false
         description: "Runner to use"
+      snapshot:
+        type: boolean
+        default: false
+        description: "Snapshot"
+      live:
+        type: boolean
+        default: false
+        description: "Live"
 
 env:
   CI: true
@@ -56,8 +64,37 @@ jobs:
     name: "Publish: Snapshot"
     runs-on: ${{ vars.RUNNER || inputs.runner || 'ubuntu-latest' }}
     needs: ['download-artifacts']
+    if: inputs.snapshot
     environment:
       name: "snapshots"
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: "Setup: Harden Runner"
+        uses: step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423 # v2.6.0
+        with:
+          egress-policy: audit
+      - name: "Setup: Checkout"
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          fetch-depth: 0
+      - name: "Setup: JDK ${{ inputs.java_version || vars.JVM_VERSION }}"
+        uses: actions/setup-java@0ab4596768b603586c0de567f2430c30f5b0d2b0 # v3.13.0
+        with:
+          java-version: ${{ inputs.java_version || vars.JVM_VERSION }}
+          distribution: ${{ inputs.jvm || vars.JVM_VARIANT || 'zulu' }}
+      - name: "Stubbed"
+        run: echo "Deployment not yet implemented"
+
+  ## Stage: Publish Live
+  publish-live:
+    name: "Publish: Live"
+    runs-on: ${{ vars.RUNNER || inputs.runner || 'ubuntu-latest' }}
+    needs: ['download-artifacts']
+    if: inputs.live
+    environment:
+      name: "live"
     permissions:
       contents: read
       packages: write
