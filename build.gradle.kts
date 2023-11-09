@@ -17,6 +17,7 @@ plugins {
 }
 
 val stamp: String by properties
+val coverageReportPath = "reports/kover/merged/xml/report.xml"
 
 group = PlanetscaleBuild.Library.GROUP
 version = if (stamp == "true") {
@@ -38,6 +39,10 @@ sonar {
         property("sonar.organization", "elide-dev")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.sourceEncoding", "UTF-8")
+        property("sonar.coverage.jacoco.xmlReportPaths", listOf(
+            coverageReportPath,
+            "build/reports/kover/report.xml",
+        ).joinToString(","))
     }
 }
 
@@ -64,8 +69,27 @@ subprojects {
     sonar {
         properties {
             property("sonar.sources", "src/main/jvm")
-            property("sonar.tests", "src/test/jvm")
+            property("sonar.tests", "src/test/kotlin")
+            property("sonar.java.binaries", "build/classes")
         }
+    }
+
+    koverReport {
+        defaults {
+            xml {
+                onCheck = true
+            }
+            verify {
+                onCheck = true
+            }
+        }
+    }
+
+    tasks.check.configure {
+        dependsOn(listOfNotNull(
+            tasks.findByName("test"),
+            tasks.findByName("spotlessKotlinCheck"),
+        ))
     }
 }
 
@@ -73,6 +97,7 @@ apiValidation {
     // Projects which are not published or otherwise do not expose a JVM API.
     ignoredProjects.addAll(listOf(
         "catalog",
+        "driver",
         "impl-h2",
     ))
 }
@@ -88,8 +113,32 @@ dependencies {
 
 koverReport {
     defaults {
+        html {
+            onCheck = true
+        }
+
         xml {
-            setReportFile(layout.buildDirectory.file("reports/kover/merged/xml/report.xml"))
+            onCheck = true
+            setReportFile(layout.buildDirectory.file(coverageReportPath))
+        }
+
+        verify {
+            onCheck = true
         }
     }
+}
+
+val preMerge by tasks.registering {
+    group = "build"
+    description = "Per-merge build, test, and check"
+
+    dependsOn(listOfNotNull(
+        tasks.build,
+        tasks.check,
+        tasks.sonar,
+        tasks.koverVerify,
+        tasks.koverXmlReport,
+        tasks.koverHtmlReport,
+        tasks.findByName("apiCheck"),
+    ))
 }
