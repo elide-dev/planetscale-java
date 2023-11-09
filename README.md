@@ -251,7 +251,7 @@ dependencies {
 
 ## Library Hygiene
 
-This library is built with **Java 20**, targeting **Java 17** as a minimum baseline. If you need an earlier version of
+This library is built with **Java 21**, targeting **Java 17** as a minimum baseline. If you need an earlier version of
 Java, let us know, and we can probably ship one for you (within reason).
 
 The following devops features are baked into the library's code or process:

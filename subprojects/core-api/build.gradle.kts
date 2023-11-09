@@ -37,3 +37,7 @@ publishable(
     name = PlanetscaleBuild.Library.CORE_API,
     description = "Planetscale driver JDBC interfaces",
 )
+
+tasks.compileJava.configure {
+    dependsOn(tasks.compileKotlin)
+}

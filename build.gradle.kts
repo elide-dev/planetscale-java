@@ -43,6 +43,7 @@ sonar {
         property("sonar.organization", "elide-dev")
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.sourceEncoding", "UTF-8")
+        property("sonar.gradle.skipCompile", "true")
         property("sonar.coverage.jacoco.xmlReportPaths", listOf(
             coverageReportPath,
             "build/reports/kover/report.xml",
@@ -75,17 +76,6 @@ subprojects {
             property("sonar.sources", "src/main/jvm")
             property("sonar.tests", "src/test/kotlin")
             property("sonar.java.binaries", "build/classes")
-        }
-    }
-
-    koverReport {
-        defaults {
-            xml {
-                onCheck = true
-            }
-            verify {
-                onCheck = true
-            }
         }
     }
 
@@ -140,9 +130,6 @@ val preMerge by tasks.registering {
         tasks.build,
         tasks.check,
         tasks.sonar,
-        tasks.koverVerify,
-        tasks.koverXmlReport,
-        tasks.koverHtmlReport,
         tasks.findByName("apiCheck"),
     ))
 }

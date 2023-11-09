@@ -1,0 +1,4 @@
+public final class com/planetscale/micronaut/PlanetscaleMicronautStub {
+	public fun <init> ()V
+}
+

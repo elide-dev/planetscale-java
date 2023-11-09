@@ -1,0 +1,4 @@
+public final class com/planetscale/kotlin/PlanetscaleKotlinStub {
+	public fun <init> ()V
+}
+

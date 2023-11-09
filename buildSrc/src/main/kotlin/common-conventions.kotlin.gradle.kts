@@ -9,7 +9,7 @@ plugins {
     kotlin("jvm")
 }
 
-val javaToolchainVersion = JavaVersion.VERSION_20
+val javaToolchainVersion = JavaVersion.VERSION_21
 val javaTarget = JavaVersion.VERSION_17
 val kotlinJavaTarget = JvmTarget.JVM_17
 val kotlinVersion = KotlinVersion.KOTLIN_2_0
