@@ -48,6 +48,7 @@ env:
 
 # Read-only permissions by default.
 permissions:
+  actions: read
   contents: read
 
 # One active build per reference, per workflow.

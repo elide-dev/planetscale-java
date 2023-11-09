@@ -24,6 +24,7 @@ env:
   BUILDLESS_APIKEY: ${{ secrets.BUILDLESS_APIKEY }}
 
 permissions:
+  actions: read
   contents: read
 
 jobs:
