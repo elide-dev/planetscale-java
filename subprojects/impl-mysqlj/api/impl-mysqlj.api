@@ -2,6 +2,7 @@ public final class com/planetscale/jvm/mysqlj/PlanetscaleMysqlDriver : com/plane
 	public static final field Companion Lcom/planetscale/jvm/mysqlj/PlanetscaleMysqlDriver$Companion;
 	public fun <init> ()V
 	public static final fun awsEndpoint (Ljava/lang/String;)Ljava/lang/String;
+	public fun createDriver ()Ljava/sql/Driver;
 	public static final fun detectProvider ()Lcom/planetscale/jvm/driver/CloudProvider;
 	public static final fun gcpEndpoint (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun qualifiedEndpoint (Ljava/lang/String;)Ljava/lang/String;
