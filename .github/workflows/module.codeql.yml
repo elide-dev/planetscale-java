@@ -46,12 +46,11 @@ jobs:
 
       - name: "Setup: Checkout"
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-      - name: Set up JDK 21
+      - name: "Setup: JDK ${{ inputs.java_version || vars.JVM_VERSION }}"
         uses: actions/setup-java@0ab4596768b603586c0de567f2430c30f5b0d2b0 # v3.13.0
         with:
-          java-version: 21
-          distribution: 'zulu'
-
+          java-version: ${{ inputs.java_version || vars.JVM_VERSION || '21' }}
+          distribution: ${{ inputs.jvm || vars.JVM_VARIANT || 'zulu' }}
       - name: "Setup: Cache SonarCloud Packages"
         uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
         with:
