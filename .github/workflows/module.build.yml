@@ -143,6 +143,11 @@ jobs:
           path: |
             ./build/reports/kover/merged/xml/report.xml
             ./subprojects/*/build/test-results/test/TEST-*.xml
+      - name: "Report: Codecov"
+        uses: codecov/codecov-action@eaaf4bedf32dbdc6b720b63067d99c4d77d6047d # v3.1.4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./build/reports/kover/merged/xml/report.xml
 
   ## Stage: Report Coverage
   coverage:
@@ -158,11 +163,6 @@ jobs:
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
         with:
           name: test-reports-jvm
-      - name: "Report: Codecov"
-        uses: codecov/codecov-action@eaaf4bedf32dbdc6b720b63067d99c4d77d6047d # v3.1.4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./build/reports/kover/merged/xml/report.xml
 
   ## Stage: Build Library with Gradle
   provenance:
