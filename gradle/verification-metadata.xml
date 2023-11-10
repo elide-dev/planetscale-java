@@ -4,9 +4,9 @@
       <verify-metadata>true</verify-metadata>
       <verify-signatures>true</verify-signatures>
       <trusted-artifacts>
-         <trust file="gradle-.*-all.zip"/>
-         <trust file="gradle-.*-bin.zip"/>
-         <trust file="gradle-.*-src.zip"/>
+         <trust file="gradle-.*all.zip" regex="true"/>
+         <trust file="gradle-.*bin.zip" regex="true"/>
+         <trust file="gradle-.*src.zip" regex="true"/>
          <trust file=".*-javadoc[.]jar" regex="true"/>
          <trust file=".*-sources[.]jar" regex="true"/>
          <trust file="github-dependency-graph-gradle-plugin-.*" regex="true"/>
@@ -70,6 +70,8 @@
             <trusting group="^com[.]diffplug($|([.].*))" regex="true"/>
          </trusted-key>
          <trusted-key id="47EB6836245D2D40E89DFB4136D4E9618F3ADAB5" group="io.github.microutils" name="kotlin-logging-jvm" version="3.0.5"/>
+         <trusted-key id="47EF0EC60C210BC6DFAA5819B7AE15C15C321C44" group="jakarta.transaction" name="jakarta.transaction-api" version="2.0.1"/>
+         <trusted-key id="48B086A7D843CFA258E83286928FBF39003C0425" group="io.projectreactor"/>
          <trusted-key id="4F7E32D440EF90A83011A8FC6425559C47CC79C4">
             <trusting group="javax.annotation" name="javax.annotation-api" version="1.2"/>
             <trusting group="javax.annotation" name="javax.annotation-api" version="1.3.2"/>
@@ -89,6 +91,7 @@
          <trusted-key id="6A814B1F869C2BBEAB7CB7271A2A1C94BDE89688" group="org.codehaus.plexus"/>
          <trusted-key id="6EAD752B3E2B38E8E2236D7BA9321EDAA5CB3202" group="ch.randelshofer" name="fastdoubleparser" version="0.8.0"/>
          <trusted-key id="6F538074CCEBF35F28AF9B066A0975F8B1127B83" group="org.jetbrains.kotlin"/>
+         <trusted-key id="71EBF1CA4125B10AAB1E17CDB7DC526C17E3608B" group="jakarta.persistence" name="jakarta.persistence-api" version="3.1.0"/>
          <trusted-key id="7616EB882DAF57A11477AAF559A252FB1199D873" group="com.google.code.findbugs" name="jsr305" version="3.0.2"/>
          <trusted-key id="7B121B76A7ED6CE6E60AD51784E913A8E3A748C0" group="org.bouncycastle"/>
          <trusted-key id="7C669810892CBD3148FA92995B05CCDE140C2876" group="org.eclipse.jgit"/>

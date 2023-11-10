@@ -9,7 +9,10 @@ plugins {
 
 dependencies {
     api(projects.subprojects.coreApi)
+    api(projects.subprojects.driver)
     api(libs.graalvm.sdk)
+    implementation(projects.subprojects.implMysqlj)
+
     testImplementation(testFixtures(projects.subprojects.coreApi))
 }
 

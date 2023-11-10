@@ -1,0 +1,13 @@
+
+planetscale:
+  enabled: true
+  databases:
+    default:
+      db: dbname
+      username: dbuser
+      password: dbpass
+      endpoints:
+        - us-west-1.aws
+        - aws
+      features:
+        boost: true

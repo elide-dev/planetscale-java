@@ -1,4 +1,150 @@
-public final class com/planetscale/micronaut/PlanetscaleMicronautStub {
+public final synthetic class com/planetscale/micronaut/$PlanetscaleConfiguration$PlanetscaleConfigurationFactory$Definition$Reference : io/micronaut/context/AbstractInitializableBeanDefinitionReference {
+	public static final field $ANNOTATION_METADATA Lio/micronaut/core/annotation/AnnotationMetadata;
 	public fun <init> ()V
+	public fun getBeanDefinitionType ()Ljava/lang/Class;
+	public fun getBeanType ()Ljava/lang/Class;
+	public fun load ()Lio/micronaut/inject/BeanDefinition;
+}
+
+public final synthetic class com/planetscale/micronaut/$PlanetscaleConfiguration$PlanetscaleConfigurationFactory$PlanetscaleConfiguration0$Definition$Reference : io/micronaut/context/AbstractInitializableBeanDefinitionReference {
+	public static final field $ANNOTATION_METADATA Lio/micronaut/core/annotation/AnnotationMetadata;
+	public fun <init> ()V
+	public fun getBeanDefinitionType ()Ljava/lang/Class;
+	public fun getBeanType ()Ljava/lang/Class;
+	public fun load ()Lio/micronaut/inject/BeanDefinition;
+}
+
+public final synthetic class com/planetscale/micronaut/$PlanetscaleConfigurationFactory$BuildPlanetscaleJdbcConfiguration0$Definition$Reference : io/micronaut/context/AbstractInitializableBeanDefinitionReference {
+	public static final field $ANNOTATION_METADATA Lio/micronaut/core/annotation/AnnotationMetadata;
+	public fun <init> ()V
+	public fun getBeanDefinitionType ()Ljava/lang/Class;
+	public fun getBeanType ()Ljava/lang/Class;
+	public fun getGenericBeanType ()Lio/micronaut/core/type/Argument;
+	public fun load ()Lio/micronaut/inject/BeanDefinition;
+}
+
+public final synthetic class com/planetscale/micronaut/$PlanetscaleConfigurationFactory$Definition$Reference : io/micronaut/context/AbstractInitializableBeanDefinitionReference {
+	public static final field $ANNOTATION_METADATA Lio/micronaut/core/annotation/AnnotationMetadata;
+	public fun <init> ()V
+	public fun getBeanDefinitionType ()Ljava/lang/Class;
+	public fun getBeanType ()Ljava/lang/Class;
+	public fun load ()Lio/micronaut/inject/BeanDefinition;
+}
+
+public final synthetic class com/planetscale/micronaut/$PlanetscaleDatabaseConfiguration$Definition$Reference : io/micronaut/context/AbstractInitializableBeanDefinitionReference {
+	public static final field $ANNOTATION_METADATA Lio/micronaut/core/annotation/AnnotationMetadata;
+	public fun <init> ()V
+	public fun getBeanDefinitionType ()Ljava/lang/Class;
+	public fun getBeanType ()Ljava/lang/Class;
+	public fun load ()Lio/micronaut/inject/BeanDefinition;
+}
+
+public final synthetic class com/planetscale/micronaut/$PlanetscaleDatabaseConfiguration$PlanetscaleDatabaseFeatureConfiguration$Definition$Reference : io/micronaut/context/AbstractInitializableBeanDefinitionReference {
+	public static final field $ANNOTATION_METADATA Lio/micronaut/core/annotation/AnnotationMetadata;
+	public fun <init> ()V
+	public fun getBeanDefinitionType ()Ljava/lang/Class;
+	public fun getBeanType ()Ljava/lang/Class;
+	public fun load ()Lio/micronaut/inject/BeanDefinition;
+}
+
+public final synthetic class com/planetscale/micronaut/$PlanetscaleEndpointConverter$Definition$Reference : io/micronaut/context/AbstractInitializableBeanDefinitionReference {
+	public static final field $ANNOTATION_METADATA Lio/micronaut/core/annotation/AnnotationMetadata;
+	public fun <init> ()V
+	public fun getBeanDefinitionType ()Ljava/lang/Class;
+	public fun getBeanType ()Ljava/lang/Class;
+	public fun load ()Lio/micronaut/inject/BeanDefinition;
+}
+
+public final synthetic class com/planetscale/micronaut/$PlanetscaleModuleConfiguration$Definition$Reference : io/micronaut/context/AbstractInitializableBeanDefinitionReference {
+	public static final field $ANNOTATION_METADATA Lio/micronaut/core/annotation/AnnotationMetadata;
+	public fun <init> ()V
+	public fun getBeanDefinitionType ()Ljava/lang/Class;
+	public fun getBeanType ()Ljava/lang/Class;
+	public fun load ()Lio/micronaut/inject/BeanDefinition;
+}
+
+public final class com/planetscale/micronaut/PlanetscaleConfiguration : io/micronaut/core/util/Toggleable, java/lang/Comparable {
+	public fun compareTo (Lcom/planetscale/micronaut/PlanetscaleConfiguration;)I
+	public synthetic fun compareTo (Ljava/lang/Object;)I
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getModuleConfiguration ()Lcom/planetscale/micronaut/PlanetscaleModuleConfiguration;
+	public fun getProfile (Ljava/lang/String;)Ljava/util/Optional;
+	public fun getProfiles ()Ljava/util/Set;
+	public fun hashCode ()I
+	public fun isEnabled ()Z
+}
+
+public class com/planetscale/micronaut/PlanetscaleConfiguration$PlanetscaleConfigurationFactory {
+	public fun <init> ()V
+}
+
+public final class com/planetscale/micronaut/PlanetscaleConfigurationFactory {
+	public fun <init> ()V
+	public static fun buildFrom (Lcom/planetscale/micronaut/PlanetscaleDatabaseConfiguration;)Lio/micronaut/jdbc/BasicJdbcConfiguration;
+}
+
+public final class com/planetscale/micronaut/PlanetscaleDatabaseConfiguration : com/planetscale/micronaut/PlanetscaleDatabaseProfile, io/micronaut/core/naming/Named, io/micronaut/core/util/Toggleable, java/lang/Comparable {
+	public fun <init> (Ljava/lang/String;)V
+	public fun compareTo (Lcom/planetscale/micronaut/PlanetscaleDatabaseConfiguration;)I
+	public synthetic fun compareTo (Ljava/lang/Object;)I
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getDb ()Ljava/lang/String;
+	public fun getEndpoints ()Ljava/util/Set;
+	public fun getFeatures ()Lcom/planetscale/micronaut/PlanetscaleDatabaseConfiguration$PlanetscaleDatabaseFeatureConfiguration;
+	public synthetic fun getFeatures ()Lcom/planetscale/micronaut/PlanetscaleDatabaseFeatures;
+	public fun getName ()Ljava/lang/String;
+	public fun getPassword ()Ljava/lang/String;
+	public fun getUsername ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun setDb (Ljava/lang/String;)V
+	public fun setEndpoints (Ljava/util/Set;)V
+	public fun setFeatures (Lcom/planetscale/micronaut/PlanetscaleDatabaseConfiguration$PlanetscaleDatabaseFeatureConfiguration;)V
+	public fun setPassword (Ljava/lang/String;)V
+	public fun setUsername (Ljava/lang/String;)V
+}
+
+public class com/planetscale/micronaut/PlanetscaleDatabaseConfiguration$PlanetscaleDatabaseFeatureConfiguration : com/planetscale/micronaut/PlanetscaleDatabaseFeatures {
+	public fun <init> ()V
+	public fun getBoost ()Ljava/lang/Boolean;
+	public fun setBoost (Ljava/lang/Boolean;)V
+}
+
+public abstract interface class com/planetscale/micronaut/PlanetscaleDatabaseFeatures {
+	public abstract fun getBoost ()Ljava/lang/Boolean;
+	public abstract fun setBoost (Ljava/lang/Boolean;)V
+}
+
+public abstract interface class com/planetscale/micronaut/PlanetscaleDatabaseProfile {
+	public static final field PREFIX Ljava/lang/String;
+	public abstract fun getDb ()Ljava/lang/String;
+	public abstract fun getEndpoints ()Ljava/util/Set;
+	public abstract fun getFeatures ()Lcom/planetscale/micronaut/PlanetscaleDatabaseFeatures;
+	public abstract fun getPassword ()Ljava/lang/String;
+	public abstract fun getUsername ()Ljava/lang/String;
+}
+
+public final class com/planetscale/micronaut/PlanetscaleEndpoint : java/lang/Record {
+	public fun <init> (Ljava/lang/String;)V
+	public fun endpoint ()Ljava/lang/String;
+	public final fun equals (Ljava/lang/Object;)Z
+	public final fun hashCode ()I
+	public static fun of (Ljava/lang/String;)Lcom/planetscale/micronaut/PlanetscaleEndpoint;
+	public final fun toString ()Ljava/lang/String;
+}
+
+public final class com/planetscale/micronaut/PlanetscaleEndpointConverter : io/micronaut/core/convert/TypeConverter {
+	public fun <init> ()V
+	public synthetic fun convert (Ljava/lang/Object;Ljava/lang/Class;)Ljava/util/Optional;
+	public synthetic fun convert (Ljava/lang/Object;Ljava/lang/Class;Lio/micronaut/core/convert/ConversionContext;)Ljava/util/Optional;
+	public fun convert (Ljava/lang/String;Ljava/lang/Class;)Ljava/util/Optional;
+	public fun convert (Ljava/lang/String;Ljava/lang/Class;Lio/micronaut/core/convert/ConversionContext;)Ljava/util/Optional;
+}
+
+public final class com/planetscale/micronaut/PlanetscaleModuleConfiguration : io/micronaut/core/util/Toggleable {
+	public static final field PREFIX Ljava/lang/String;
+	public fun <init> ()V
+	public fun isEnabled ()Z
+	public fun setDebug (Z)V
+	public fun setEnabled (Z)V
 }
 

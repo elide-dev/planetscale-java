@@ -1,0 +1,11 @@
+
+planetscale:
+  databases:
+    default:
+      db: dbname
+      username: dbuser
+      password: dbpass
+      endpoints:
+        - aws
+      features:
+        boost: true
