@@ -18,6 +18,7 @@ on:
       - "**/*.java"
       - "**/*.properties"
       - "gradle/**"
+      - ".github/workflows/*.yml"
 
 env:
   CI: true

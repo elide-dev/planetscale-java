@@ -18,4 +18,4 @@ complexity:
     ignoreOverridden: false
   NestedBlockDepth:
     active: true
-    threshold: 4
+    threshold: 8
