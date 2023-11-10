@@ -98,6 +98,7 @@ subprojects {
     tasks.check.configure {
         dependsOn(listOfNotNull(
             tasks.findByName("test"),
+            tasks.findByName("koverXmlReport"),
             tasks.findByName("spotlessKotlinCheck"),
         ))
     }
