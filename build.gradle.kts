@@ -64,6 +64,19 @@ subprojects {
         theme = ThemeType.MOCHA
     }
 
+    koverReport {
+        defaults {
+            xml {
+                onCheck = true
+                setReportFile(layout.buildDirectory.file(coverageReportPath))
+            }
+
+            verify {
+                onCheck = true
+            }
+        }
+    }
+
     spotless {
         ratchetFrom("origin/main")
 
