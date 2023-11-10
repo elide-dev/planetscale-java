@@ -12,6 +12,7 @@ dependencies {
     api(projects.subprojects.coreApi)
     api(mn.micronaut.core)
     ksp(mn.micronaut.inject.kotlin)
+    testImplementation(testFixtures(projects.subprojects.coreApi))
 }
 
 kotlin {

@@ -203,4 +203,10 @@ class PlanetscaleMysqlDriverTest {
             assertNotNull(it.createDriver())
         }
     }
+
+    @Test fun testFailsWithNoConfig(): Unit = PlanetscaleMysqlDriver().let {
+        assertFailsWith<IllegalArgumentException> {
+            it.validate()
+        }
+    }
 }

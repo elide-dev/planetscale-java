@@ -9,6 +9,7 @@ plugins {
 
 dependencies {
     api(projects.subprojects.coreApi)
+    testImplementation(testFixtures(projects.subprojects.coreApi))
 }
 
 kotlin {
