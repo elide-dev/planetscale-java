@@ -16,7 +16,7 @@ import java.util.stream.Collectors
  */
 public abstract class PlanetscaleDriver : Driver, Closeable, AutoCloseable {
     private companion object {
-        @JvmStatic fun resolveImpl(explicit: String? = null): PlanetscaleAdapter {
+        @JvmStatic fun resolveImpl(explicit: String?): PlanetscaleAdapter {
             val serviceImpls = ServiceLoader.load(PlanetscaleAdapter::class.java)
                 .stream()
                 .collect(Collectors.toUnmodifiableList())

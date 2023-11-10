@@ -40,51 +40,23 @@ jobs:
       with:
         java-version: ${{ inputs.java_version || vars.JVM_VERSION }}
         distribution: ${{ inputs.jvm || vars.JVM_VARIANT || 'zulu' }}
-    - name: "Setup: Detekt download URL"
-      id: detekt_info
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        gh api graphql --field tagName=$DETEKT_RELEASE_TAG --raw-field query='
-          query getReleaseAssetDownloadUrl($tagName: String!) {
-            repository(name: "detekt", owner: "detekt") {
-              release(tagName: $tagName) {
-                releaseAssets(name: "detekt", first: 1) {
-                  nodes {
-                    downloadUrl
-                  }
-                }
-                tagCommit {
-                  oid
-                }
-              }
-            }
-          }
-        ' 1> gh_response.json
-
-        DETEKT_RELEASE_SHA=$(jq --raw-output '.data.repository.release.releaseAssets.tagCommit.oid' gh_response.json)
-        if [ $DETEKT_RELEASE_SHA != "37f0a1d006977512f1f216506cd695039607c3e5" ]; then
-          echo "Release tag doesn't match expected commit SHA"
-        fi
-
-        DETEKT_DOWNLOAD_URL=$(jq --raw-output '.data.repository.release.releaseAssets.nodes[0].downloadUrl' gh_response.json)
-        echo "download_url=$DETEKT_DOWNLOAD_URL" >> $GITHUB_OUTPUT
-    # Sets up the detekt cli
     - name: "Setup: Detekt"
       run: |
         dest=$( mktemp -d )
         curl --request GET \
-          --url ${{ steps.detekt_info.outputs.download_url }} \
+          --url https://github.com/detekt/detekt/releases/download/v1.23.3/detekt-cli-1.23.3-all.jar \
           --silent \
           --location \
-          --output $dest/detekt
+          --output $dest/detekt-all.jar
+        echo '#!/usr/bin/env bash' > $dest/detekt
+        echo "java -jar $dest/detekt-all.jar \"\$@\"" >> $dest/detekt
         chmod a+x $dest/detekt
         echo $dest >> $GITHUB_PATH
-    # Performs static analysis using Detekt
     - name: "Checks: Detekt"
       continue-on-error: true
       run: |
         detekt --input ${{ github.workspace }} --config ./.github/detekt.yml --report sarif:${{ github.workspace }}/detekt.sarif.json
+
     # Modifies the SARIF output produced by Detekt so that absolute URIs are relative
     # This is so we can easily map results onto their source files
     # This can be removed once relative URI support lands in Detekt: https://git.io/JLBbA
