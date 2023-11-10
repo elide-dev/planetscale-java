@@ -73,7 +73,29 @@ jobs:
       - name: "Setup: Harden Runner"
         uses: step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423 # v2.6.0
         with:
-          egress-policy: audit
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            api.azul.com:443
+            api.github.com:443
+            cdn.azul.com:443
+            codecov.io:443
+            dl.less.build:443
+            downloads.gradle.org:443
+            ea6ne4j2sb.execute-api.eu-central-1.amazonaws.com:443
+            github.com:443
+            gradle.less.build:443
+            gradle.pkg.st:443
+            keys.openpgp.org:443
+            objects.githubusercontent.com:443
+            plugins-artifacts.gradle.org:443
+            plugins.gradle.org:443
+            sc-cleancode-sensorcache-eu-central-1-prod.s3.amazonaws.com:443
+            scans-in.gradle.com:443
+            services.gradle.org:443
+            sonarcloud.io:443
+            storage.googleapis.com:443
+            uploader.codecov.io:443
       - name: "Setup: Checkout"
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
