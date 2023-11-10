@@ -4,9 +4,9 @@
       <verify-metadata>true</verify-metadata>
       <verify-signatures>true</verify-signatures>
       <trusted-artifacts>
-         <trust file="gradle-.*-src.zip"/>
-         <trust file="gradle-.*-bin.zip"/>
          <trust file="gradle-.*-all.zip"/>
+         <trust file="gradle-.*-bin.zip"/>
+         <trust file="gradle-.*-src.zip"/>
          <trust file=".*-javadoc[.]jar" regex="true"/>
          <trust file=".*-sources[.]jar" regex="true"/>
          <trust file="github-dependency-graph-gradle-plugin-.*" regex="true"/>

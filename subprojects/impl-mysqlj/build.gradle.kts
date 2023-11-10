@@ -9,6 +9,7 @@ plugins {
 dependencies {
     api(projects.subprojects.coreApi)
     implementation(libs.bundles.mysql)
+    testImplementation(testFixtures(projects.subprojects.coreApi))
 }
 
 kotlin {

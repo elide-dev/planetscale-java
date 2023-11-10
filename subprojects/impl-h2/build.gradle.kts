@@ -11,6 +11,7 @@ baseline()
 dependencies {
     api(projects.subprojects.coreApi)
     implementation(libs.bundles.h2)
+    testImplementation(testFixtures(projects.subprojects.coreApi))
 }
 
 kotlin {

@@ -23,10 +23,8 @@ public class PlanetscaleH2Driver : AbstractPlanetscaleAdapter() {
     }
 
     override fun createDriver(): Driver {
-        return DriverManager.drivers().filter {
-            it.javaClass.canonicalName == H2_DRIVER
-        }.findFirst().orElse(null) ?: error(
-            "Failed to resolve H2 driver: check your classpath?",
-        )
+        return DriverManager.drivers().filter { it.javaClass.canonicalName == H2_DRIVER }
+            .findFirst()
+            .orElseThrow()
     }
 }

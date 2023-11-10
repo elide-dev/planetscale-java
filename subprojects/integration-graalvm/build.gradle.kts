@@ -10,6 +10,7 @@ plugins {
 dependencies {
     api(projects.subprojects.coreApi)
     api(libs.graalvm.sdk)
+    testImplementation(testFixtures(projects.subprojects.coreApi))
 }
 
 kotlin {

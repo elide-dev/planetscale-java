@@ -157,7 +157,5 @@ public class PlanetscaleMysqlDriver : AbstractPlanetscaleAdapter() {
 
     override fun createDriver(): Driver = DriverManager.drivers().filter {
         it.javaClass.canonicalName == Constants.MYSQL_DRIVER
-    }.findFirst().orElse(null) ?: error(
-        "Failed to resolve MySQL driver: check your classpath?",
-    )
+    }.findFirst().orElseThrow()
 }

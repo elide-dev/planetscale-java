@@ -5,6 +5,8 @@ plugins {
     id("planetscale-publishable.klib")
     alias(libs.plugins.ksp)
     alias(libs.plugins.buildConfig)
+    `java-test-fixtures`
+    idea
 }
 
 buildConfig {
@@ -31,6 +33,21 @@ dependencies {
 
 kotlin {
     compilerOptions.moduleName = "planetscale.connector"
+}
+
+idea {
+    module {
+        @Suppress("DEPRECATION")
+        testSourceDirs.addAll(listOf(
+            layout.projectDirectory.dir("src/test/kotlin").asFile,
+            layout.projectDirectory.dir("src/tck/kotlin").asFile
+        ))
+        @Suppress("DEPRECATION")
+        testResourceDirs.addAll(listOf(
+            layout.projectDirectory.dir("src/test/resources").asFile,
+            layout.projectDirectory.dir("src/tck/resources").asFile
+        ))
+    }
 }
 
 publishable(
