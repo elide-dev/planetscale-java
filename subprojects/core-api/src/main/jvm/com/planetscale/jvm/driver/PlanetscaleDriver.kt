@@ -44,7 +44,7 @@ public abstract class PlanetscaleDriver : Driver, Closeable, AutoCloseable {
         return activeAdapter.get().op()
     }
 
-    private fun obtainDriver(url: String, info: Properties?): Connection {
+    private fun obtainConnection(url: String, info: Properties?): Connection {
         obtainOrInitializeDriver()
         return withAdapter {
             connect(url, info)
@@ -53,12 +53,12 @@ public abstract class PlanetscaleDriver : Driver, Closeable, AutoCloseable {
 
     // -- API: JDBC Driver -- //
 
-    override fun connect(url: String, info: Properties?): Connection = obtainDriver(url, info)
+    override fun connect(url: String, info: Properties?): Connection = obtainConnection(url, info)
     override fun getMajorVersion(): Int = withAdapter { getMajorVersion() }
     override fun getMinorVersion(): Int = withAdapter { getMinorVersion() }
     override fun jdbcCompliant(): Boolean = true // both H2 and mysql are JDBC compliant
     override fun acceptsURL(url: String?): Boolean = url?.startsWith(Constants.Prefix.PLANETSCALE) ?: false
-    override fun getParentLogger(): Logger = withAdapter { getParentLogger() }
+    override fun getParentLogger(): Logger? = withAdapter { getParentLogger() }
     override fun close(): Unit = withAdapter { close() }
     override fun getPropertyInfo(url: String, info: Properties?): Array<DriverPropertyInfo> = withAdapter {
         getPropertyInfo(url, info)

@@ -107,7 +107,7 @@ public interface PlanetscaleAdapter : Closeable, AutoCloseable {
     /**
      * TBD.
      */
-    public fun getParentLogger(): Logger
+    public fun getParentLogger(): Logger?
 
     /**
      * TBD.

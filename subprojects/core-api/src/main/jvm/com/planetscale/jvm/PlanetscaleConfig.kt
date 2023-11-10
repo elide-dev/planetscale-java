@@ -64,12 +64,9 @@ public interface PlanetscaleConfig {
          * TBD.
          */
         @JvmStatic public fun parseUri(uri: String): URI {
-            return if (!uri.startsWith("jdbc:")) {
-                error("Cannot parse non-JDBC URIs")
-            } else URI.create(
-                // should be `planetscale://...`
-                uri.drop("jdbc:".length),
-            )
+            // returned value should be `planetscale://...`
+            require(uri.startsWith(Constants.Prefix.JDBC)) { "Cannot parse non-JDBC URIs" }
+            return URI.create(uri.drop(Constants.Prefix.JDBC.length))
         }
 
         /**

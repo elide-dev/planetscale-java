@@ -8,7 +8,7 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 
 class PlanetscaleH2DriverTest : AbstractAdapterTest<PlanetscaleH2Driver>() {
-    override fun createAdapter(): PlanetscaleH2Driver {
+    override fun createAdapter(config: PlanetscaleConfig): PlanetscaleH2Driver {
         return PlanetscaleH2Driver()
     }
 

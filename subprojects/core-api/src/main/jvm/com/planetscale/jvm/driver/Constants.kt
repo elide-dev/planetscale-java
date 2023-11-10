@@ -32,10 +32,11 @@ public data object Constants {
     }
 
     public data object Prefix {
+        public const val JDBC: String = "jdbc:"
         public const val MYSQL: String = "mysql:"
         public const val REPLICATION: String = "replication:"
-        public const val H2: String = "jdbc:h2:mem"
-        public const val PLANETSCALE: String = "jdbc:planetscale:"
+        public const val H2: String = "$JDBC:h2:mem"
+        public const val PLANETSCALE: String = "$JDBC:planetscale:"
     }
 
     public data object SymbolicHosts {
