@@ -1,13 +1,14 @@
 package com.planetscale.jvm.mysqlj
 
 import com.planetscale.jvm.PlanetscaleConfig
+import com.planetscale.jvm.test.AbstractAdapterTest
 import org.junit.jupiter.api.assertDoesNotThrow
 import kotlin.test.*
 
 /** Tests for the MySQL/J connector for the Planetscale driver. */
-class PlanetscaleMysqlDriverTest {
-    @Test fun testObtain() {
-        assertDoesNotThrow { PlanetscaleMysqlDriver() }
+class PlanetscaleMysqlDriverTest : AbstractAdapterTest<PlanetscaleMysqlDriver>() {
+    override fun createAdapter(): PlanetscaleMysqlDriver {
+        return PlanetscaleMysqlDriver()
     }
 
     @Test fun testAwsEndpoint() {
@@ -179,34 +180,5 @@ class PlanetscaleMysqlDriverTest {
         assertEquals(1, hosts.size, "should find one host in single-host URL")
         assertEquals("aws.connect.psdb.cloud:3306", hosts.first(), "host should be expected value")
         assertEquals("hello", dbname, "DB name should be included in connection string")
-    }
-
-    @Test fun testDriverInterface(): Unit = PlanetscaleMysqlDriver().let {
-        assertNotNull(it.getMajorVersion(), "major version should not be null")
-        assertNotNull(it.getMinorVersion(), "major version should not be null")
-    }
-
-    @Test fun testCreateUnderlyingDriver(): Unit = PlanetscaleMysqlDriver().let {
-        val config = PlanetscaleConfig.resolve(
-            PlanetscaleConfig.parseUri("jdbc:planetscale://user:pass@aws/hello"),
-        )
-        assertDoesNotThrow {
-            it.configure(config)
-        }
-        assertDoesNotThrow {
-            it.validate()
-        }
-        assertDoesNotThrow {
-            it.renderedConnectionString(config)
-        }
-        assertDoesNotThrow {
-            assertNotNull(it.createDriver())
-        }
-    }
-
-    @Test fun testFailsWithNoConfig(): Unit = PlanetscaleMysqlDriver().let {
-        assertFailsWith<IllegalArgumentException> {
-            it.validate()
-        }
     }
 }

@@ -1,14 +1,15 @@
 package com.planetscale.jvm.h2
 
 import com.planetscale.jvm.PlanetscaleConfig
+import com.planetscale.jvm.test.AbstractAdapterTest
 import org.junit.jupiter.api.assertDoesNotThrow
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 
-class PlanetscaleH2DriverTest {
-    @Test fun testObtain() {
-        assertDoesNotThrow { PlanetscaleH2Driver() }
+class PlanetscaleH2DriverTest : AbstractAdapterTest<PlanetscaleH2Driver>() {
+    override fun createAdapter(): PlanetscaleH2Driver {
+        return PlanetscaleH2Driver()
     }
 
     @Test fun testCreateDriver() {
@@ -33,11 +34,5 @@ class PlanetscaleH2DriverTest {
             it.buildUri(config)
         }
         assertNotNull(uri, "should not get `null` DB URI from database driver")
-    }
-
-    @Test fun testFailsWithNoConfig(): Unit = PlanetscaleH2Driver().let {
-        assertFailsWith<IllegalArgumentException> {
-            it.validate()
-        }
     }
 }

@@ -29,25 +29,14 @@ dependencies {
     testImplementation(libs.bundles.logback)
     testImplementation(projects.subprojects.implH2)
     testRuntimeOnly(libs.junit.jupiter.engine)
+
+    testFixturesApi(kotlin("test"))
+    testFixturesApi(kotlin("test-junit5"))
+    testFixturesApi(libs.bundles.junit5)
 }
 
 kotlin {
     compilerOptions.moduleName = "planetscale.connector"
-}
-
-idea {
-    module {
-        @Suppress("DEPRECATION")
-        testSourceDirs.addAll(listOf(
-            layout.projectDirectory.dir("src/test/kotlin").asFile,
-            layout.projectDirectory.dir("src/tck/kotlin").asFile
-        ))
-        @Suppress("DEPRECATION")
-        testResourceDirs.addAll(listOf(
-            layout.projectDirectory.dir("src/test/resources").asFile,
-            layout.projectDirectory.dir("src/tck/resources").asFile
-        ))
-    }
 }
 
 publishable(

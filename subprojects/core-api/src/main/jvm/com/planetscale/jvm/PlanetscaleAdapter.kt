@@ -97,6 +97,11 @@ public interface PlanetscaleAdapter: Closeable, AutoCloseable {
     /**
      * TBD.
      */
+    public fun renderedConnectionString(config: PlanetscaleConfig): String
+
+    /**
+     * TBD.
+     */
     public fun getPropertyInfo(url: String, info: Properties?): Array<DriverPropertyInfo>
 
     /**

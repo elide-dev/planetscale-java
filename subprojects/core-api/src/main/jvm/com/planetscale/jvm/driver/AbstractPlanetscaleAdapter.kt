@@ -72,16 +72,6 @@ public abstract class AbstractPlanetscaleAdapter : PlanetscaleAdapter, Closeable
     /**
      * TBD.
      */
-    public fun renderedConnectionString(config: PlanetscaleConfig): String {
-        return StringBuilder().apply {
-            append("jdbc:")
-            append(buildUri(config).toString())
-        }.toString()
-    }
-
-    /**
-     * TBD.
-     */
     protected open fun PlanetscaleConfig.connectBacking(uri: URI, info: Properties?): PlanetscaleConnection {
         return withDriver { driver ->
             driver.connect(toURI().toString(), info).let { connection ->
@@ -90,6 +80,16 @@ public abstract class AbstractPlanetscaleAdapter : PlanetscaleAdapter, Closeable
                 }
             }
         }
+    }
+
+    /**
+     * TBD.
+     */
+    override fun renderedConnectionString(config: PlanetscaleConfig): String {
+        return StringBuilder().apply {
+            append("jdbc:")
+            append(buildUri(config).toString())
+        }.toString()
     }
 
     /**
