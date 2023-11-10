@@ -1,7 +1,3 @@
-public final class com/planetscale/Driver : com/planetscale/jvm/driver/PlanetscaleDriver {
-	public fun <init> ()V
-}
-
 public final class com/planetscale/jvm/DriverParameter : java/lang/Enum {
 	public static final field ENABLE_BOOST Lcom/planetscale/jvm/DriverParameter;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
@@ -261,7 +257,7 @@ public abstract class com/planetscale/jvm/driver/PlanetscaleDriver : java/io/Clo
 	public fun getParentLogger ()Ljava/util/logging/Logger;
 	public fun getPropertyInfo (Ljava/lang/String;Ljava/util/Properties;)[Ljava/sql/DriverPropertyInfo;
 	public fun jdbcCompliant ()Z
-	public static final fun resolveImpl ()Lcom/planetscale/jvm/PlanetscaleAdapter;
+	public static final fun resolveImpl (Ljava/lang/String;)Lcom/planetscale/jvm/PlanetscaleAdapter;
 }
 
 public final class com/planetscale/jvm/param/Defaults {
