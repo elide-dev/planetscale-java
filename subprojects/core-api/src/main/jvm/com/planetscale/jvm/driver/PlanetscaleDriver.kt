@@ -14,16 +14,14 @@ import java.util.stream.Collectors
 /**
  * TBD.
  */
-public abstract class PlanetscaleDriver: Driver, Closeable, AutoCloseable {
+public abstract class PlanetscaleDriver : Driver, Closeable, AutoCloseable {
     private companion object {
         @JvmStatic fun resolveImpl(): PlanetscaleAdapter {
             val serviceImpls = ServiceLoader.load(PlanetscaleAdapter::class.java)
                 .stream()
                 .collect(Collectors.toUnmodifiableList())
 
-            require(serviceImpls.size == 1) {
-                "Expected exactly one Planetscale adapter implementation, but got ${serviceImpls.size}"
-            }
+            require(serviceImpls.size == 1) // @TODO: multiple implementation capability
             return serviceImpls.first().get()
         }
     }
@@ -33,16 +31,16 @@ public abstract class PlanetscaleDriver: Driver, Closeable, AutoCloseable {
     private val initialized: AtomicBoolean = AtomicBoolean(false)
 
     private fun obtainOrInitializeDriver() {
-        if (!initialized.get()) synchronized(this) {
-            activeAdapter.set(resolveImpl())
-            initialized.compareAndSet(false, true)
+        if (!initialized.get()) {
+            synchronized(this) {
+                activeAdapter.set(resolveImpl())
+                initialized.compareAndSet(false, true)
+            }
         }
     }
 
     private fun <R> withAdapter(op: PlanetscaleAdapter.() -> R): R {
-        if (!initialized.get()) {
-            obtainOrInitializeDriver()
-        }
+        obtainOrInitializeDriver()
         return activeAdapter.get().op()
     }
 
@@ -58,7 +56,7 @@ public abstract class PlanetscaleDriver: Driver, Closeable, AutoCloseable {
     override fun connect(url: String, info: Properties?): Connection = obtainDriver(url, info)
     override fun getMajorVersion(): Int = withAdapter { getMajorVersion() }
     override fun getMinorVersion(): Int = withAdapter { getMinorVersion() }
-    override fun jdbcCompliant(): Boolean = true  // both H2 and mysql are JDBC compliant
+    override fun jdbcCompliant(): Boolean = true // both H2 and mysql are JDBC compliant
     override fun acceptsURL(url: String?): Boolean = url?.startsWith(Constants.Prefix.PLANETSCALE) ?: false
     override fun getParentLogger(): Logger = withAdapter { getParentLogger() }
     override fun close(): Unit = withAdapter { close() }

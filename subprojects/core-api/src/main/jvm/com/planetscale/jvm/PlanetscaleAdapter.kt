@@ -72,7 +72,7 @@ import java.util.logging.Logger
  *
  * - (TBD).
  */
-public interface PlanetscaleAdapter: Closeable, AutoCloseable {
+public interface PlanetscaleAdapter : Closeable, AutoCloseable {
     /**
      * TBD.
      */

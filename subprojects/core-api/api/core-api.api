@@ -17,6 +17,7 @@ public abstract interface class com/planetscale/jvm/PlanetscaleAdapter : java/io
 	public abstract fun getMinorVersion ()I
 	public abstract fun getParentLogger ()Ljava/util/logging/Logger;
 	public abstract fun getPropertyInfo (Ljava/lang/String;Ljava/util/Properties;)[Ljava/sql/DriverPropertyInfo;
+	public abstract fun renderedConnectionString (Lcom/planetscale/jvm/PlanetscaleConfig;)Ljava/lang/String;
 	public abstract fun validate ()V
 }
 
@@ -159,7 +160,7 @@ public abstract class com/planetscale/jvm/driver/AbstractPlanetscaleAdapter : co
 	public fun getMinorVersion ()I
 	public fun getParentLogger ()Ljava/util/logging/Logger;
 	public fun getPropertyInfo (Ljava/lang/String;Ljava/util/Properties;)[Ljava/sql/DriverPropertyInfo;
-	public final fun renderedConnectionString (Lcom/planetscale/jvm/PlanetscaleConfig;)Ljava/lang/String;
+	public fun renderedConnectionString (Lcom/planetscale/jvm/PlanetscaleConfig;)Ljava/lang/String;
 	protected abstract fun toURI (Lcom/planetscale/jvm/PlanetscaleConfig;)Ljava/net/URI;
 	public fun validate ()V
 	protected fun withDriver (Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
