@@ -1,0 +1,21 @@
+#
+# Detekt Configuration
+# --------------------
+# See: https://github.com/detekt/detekt/blob/main/detekt-core/src/main/resources/default-detekt-config.yml
+#
+
+complexity:
+  active: true
+  TooManyFunctions:
+    active: true
+    allowedFunctionsPerFile: 20
+    allowedFunctionsPerClass: 20
+    allowedFunctionsPerInterface: 20
+    allowedFunctionsPerObject: 20
+    allowedFunctionsPerEnum: 20
+    ignoreDeprecated: false
+    ignorePrivate: true
+    ignoreOverridden: true
+  NestedBlockDepth:
+    active: true
+    allowedDepth: 10
