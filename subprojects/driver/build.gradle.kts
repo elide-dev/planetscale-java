@@ -9,13 +9,15 @@ plugins {
 dependencies {
     api(projects.subprojects.coreApi)
     implementation(projects.subprojects.implMysqlj)
+    testImplementation(libs.bundles.junit5)
+    testImplementation(testFixtures(projects.subprojects.coreApi))
+}
+
+kotlin {
+    compilerOptions.moduleName = "planetscale.driver"
 }
 
 publishable(
     name = PlanetscaleBuild.Library.DRIVER,
     description = "Planetscale JDBC meta-driver",
 )
-
-sonar {
-    isSkipProject = true
-}

@@ -108,7 +108,6 @@ apiValidation {
     // Projects which are not published or otherwise do not expose a JVM API.
     ignoredProjects.addAll(listOf(
         "catalog",
-        "driver",
         "impl-h2",
     ))
 }
@@ -137,6 +136,12 @@ koverReport {
             onCheck = true
         }
     }
+}
+
+// disable top-level project publications
+afterEvaluate {
+    tasks.withType<PublishToMavenRepository>().configureEach { enabled = false }
+    tasks.withType<PublishToMavenLocal>().configureEach { enabled = false }
 }
 
 val preMerge by tasks.registering {

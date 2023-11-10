@@ -1,0 +1,4 @@
+public final class com/planetscale/Driver : com/planetscale/jvm/driver/PlanetscaleDriver {
+	public fun <init> ()V
+}
+
