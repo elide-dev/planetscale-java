@@ -35,14 +35,16 @@ public sealed interface PlanetscaleCredential {
         /** Lightweight wrapper for a validated Planetscale credential. */
         @JvmInline internal value class PlanetscaleUser(
             private val credential: PlanetscaleCredentialInfo,
-        ): PlanetscaleCredential {
+        ) : PlanetscaleCredential {
             companion object {
                 @JvmStatic internal fun of(db: String, user: String, pass: String): PlanetscaleCredential {
-                    return PlanetscaleUser(PlanetscaleCredentialInfo(
-                        database = db,
-                        username = user,
-                        password = pass,
-                    ))
+                    return PlanetscaleUser(
+                        PlanetscaleCredentialInfo(
+                            database = db,
+                            username = user,
+                            password = pass,
+                        ),
+                    )
                 }
             }
 
@@ -72,20 +74,22 @@ public sealed interface PlanetscaleCredential {
                         if (split.size == 2) {
                             val user = split.first().ifEmpty { null }
                             val pass = split[1].ifEmpty { null }
-                            if (user.isNullOrBlank() || pass.isNullOrBlank()) (null to null) else {
+                            if (user.isNullOrBlank() || pass.isNullOrBlank()) {
+                                (null to null)
+                            } else {
                                 user to pass
                             }
-                        } else error(
-                            "Invalid user/password specification in database URI"
-                        )
+                        } else {
+                            error("Invalid user/password specification in database URI")
+                        }
                     }
                     else -> it to null
                 }.let { (user, pass) ->
                     (
                         user ?: System.getProperty(Constants.USER_VM_PROPERTY, System.getenv(Constants.USER_ENV_VAR))
-                    ) to (
+                        ) to (
                         pass ?: System.getProperty(Constants.PASS_VM_PROPERTY, System.getenv(Constants.PASS_ENV_VAR))
-                    )
+                        )
                 }
             }?.let { (user, pass) ->
                 PlanetscaleUser.of(dbNameFromUri(uri), user, pass)
