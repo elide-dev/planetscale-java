@@ -8,14 +8,14 @@ complexity:
   active: true
   TooManyFunctions:
     active: true
-    allowedFunctionsPerFile: 20
-    allowedFunctionsPerClass: 20
-    allowedFunctionsPerInterface: 20
-    allowedFunctionsPerObject: 20
-    allowedFunctionsPerEnum: 20
+    thresholdInFiles: 20
+    thresholdInClasses: 20
+    thresholdInInterfaces: 20
+    thresholdInObjects: 20
+    thresholdInEnums: 20
     ignoreDeprecated: false
-    ignorePrivate: true
-    ignoreOverridden: true
+    ignorePrivate: false
+    ignoreOverridden: false
   NestedBlockDepth:
     active: true
-    allowedDepth: 10
+    threshold: 4
