@@ -1,4 +1,5 @@
 import PlanetscaleBuild.publishable
+import io.micronaut.gradle.MicronautTestRuntime
 
 plugins {
     id("common-conventions.kotlin")
@@ -8,11 +9,27 @@ plugins {
     alias(libs.plugins.micronaut.library)
 }
 
+micronaut {
+    testRuntime = MicronautTestRuntime.JUNIT_5
+}
+
 dependencies {
-    api(projects.subprojects.coreApi)
+    annotationProcessor(mn.micronaut.inject.java)
+
     api(mn.micronaut.core)
+    api(mn.micronaut.jdbc)
+    api(mn.micronaut.data.jdbc)
+    api(mn.micronaut.data.connection.jdbc)
+    api(projects.subprojects.coreApi)
+    api(projects.subprojects.driver)
+    implementation(projects.subprojects.implMysqlj)
+
     ksp(mn.micronaut.inject.kotlin)
+    testImplementation(mn.snakeyaml)
+    testImplementation(libs.bundles.junit5)
+    testImplementation(mn.micronaut.test.junit5)
     testImplementation(testFixtures(projects.subprojects.coreApi))
+    testRuntimeOnly(libs.junit.jupiter.engine)
 }
 
 kotlin {

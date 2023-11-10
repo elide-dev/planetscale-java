@@ -109,8 +109,14 @@ configurations.all {
 
 if (lockDeps == "true") configurations {
     listOf(
+        api,
+        implementation,
+        testApi,
+        testImplementation,
         compileClasspath,
         runtimeClasspath,
+        testCompileClasspath,
+        testRuntimeClasspath,
     ).forEach {
         it.configure {
             resolutionStrategy.activateDependencyLocking()

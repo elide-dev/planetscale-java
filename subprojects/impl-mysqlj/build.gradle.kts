@@ -8,7 +8,10 @@ plugins {
 
 dependencies {
     api(projects.subprojects.coreApi)
-    implementation(libs.bundles.mysql)
+    implementation(libs.bundles.mysql) {
+        exclude("com.google.protobuf", "protobuf-java")
+    }
+
     testImplementation(testFixtures(projects.subprojects.coreApi))
 }
 
