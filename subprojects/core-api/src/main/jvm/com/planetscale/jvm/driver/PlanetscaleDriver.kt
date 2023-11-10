@@ -16,13 +16,16 @@ import java.util.stream.Collectors
  */
 public abstract class PlanetscaleDriver : Driver, Closeable, AutoCloseable {
     private companion object {
-        @JvmStatic fun resolveImpl(): PlanetscaleAdapter {
+        @JvmStatic fun resolveImpl(explicit: String? = null): PlanetscaleAdapter {
             val serviceImpls = ServiceLoader.load(PlanetscaleAdapter::class.java)
                 .stream()
                 .collect(Collectors.toUnmodifiableList())
 
-            require(serviceImpls.size == 1) // @TODO: multiple implementation capability
-            return serviceImpls.first().get()
+            require(serviceImpls.isNotEmpty()) { "Failed to find any implementation for the Planetscale adapter" }
+
+            return serviceImpls.firstOrNull {
+                explicit == null || it.get().javaClass.canonicalName == explicit
+            }?.get() ?: error("No suitable Planetscale driver (implementation: ${explicit ?: "auto"})")
         }
     }
 
@@ -33,7 +36,7 @@ public abstract class PlanetscaleDriver : Driver, Closeable, AutoCloseable {
     private fun obtainOrInitializeDriver() {
         if (!initialized.get()) {
             synchronized(this) {
-                activeAdapter.set(resolveImpl())
+                activeAdapter.set(resolveImpl(System.getProperty("planetscale.driver")))
                 initialized.compareAndSet(false, true)
             }
         }

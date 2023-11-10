@@ -62,6 +62,10 @@ subprojects {
 
     testlogger {
         theme = ThemeType.MOCHA
+        showStackTraces = true
+        showCauses = true
+        showFullStackTraces = true
+        showExceptions = true
     }
 
     koverReport {
