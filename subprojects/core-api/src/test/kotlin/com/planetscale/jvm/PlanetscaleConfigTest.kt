@@ -1,5 +1,6 @@
 package com.planetscale.jvm
 
+import org.junit.jupiter.api.assertThrows
 import kotlin.test.*
 
 /** Tests for Planetscale configuration classes, like [PlanetscaleConfig]. */
@@ -130,5 +131,16 @@ class PlanetscaleConfigTest {
         assertTrue(cfg.extraParams().isNotEmpty(), "should have extra params")
         assertTrue(cfg.extraParams().contains("someParam"), "unrecognized param should be in `someParams`")
         assertEquals(cfg.extraParams()["someParam"], "hi", "`someParam` should be set to `hi`")
+    }
+
+    @Test fun testFailParseNonJDBCUrl() {
+        assertThrows<IllegalArgumentException> {
+            // cannot parse non-jdbc urls
+            PlanetscaleConfig.parseUri("https://example.com")
+        }
+        assertThrows<IllegalArgumentException> {
+            // missing jdbc prefix
+            PlanetscaleConfig.parseUri("mysql://hello/hi")
+        }
     }
 }

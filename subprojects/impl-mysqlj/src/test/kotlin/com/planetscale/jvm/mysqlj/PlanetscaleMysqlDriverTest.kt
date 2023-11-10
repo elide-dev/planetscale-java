@@ -7,7 +7,7 @@ import kotlin.test.*
 
 /** Tests for the MySQL/J connector for the Planetscale driver. */
 class PlanetscaleMysqlDriverTest : AbstractAdapterTest<PlanetscaleMysqlDriver>() {
-    override fun createAdapter(): PlanetscaleMysqlDriver {
+    override fun createAdapter(config: PlanetscaleConfig): PlanetscaleMysqlDriver {
         return PlanetscaleMysqlDriver()
     }
 
@@ -23,6 +23,18 @@ class PlanetscaleMysqlDriverTest : AbstractAdapterTest<PlanetscaleMysqlDriver>()
 
     @Test fun testDetectProvider(): Unit = assertDoesNotThrow {
         PlanetscaleMysqlDriver.detectProvider()
+    }
+
+    @Test fun testResolveSymbolsPreseved() {
+        val resolved = PlanetscaleMysqlDriver.resolveHostSymbols("aws")
+        assertNotNull(resolved)
+        assertEquals("aws.connect.psdb.cloud", resolved)
+        val other = PlanetscaleMysqlDriver.resolveHostSymbols("something-custom.com")
+        assertNotNull(other)
+        assertEquals("something-custom.com", other)
+        val other2 = PlanetscaleMysqlDriver.resolveHostSymbols("something.custom.com")
+        assertNotNull(other2)
+        assertEquals("something.custom.com", other2)
     }
 
     @Test fun testResolveHostSymbolAws() {

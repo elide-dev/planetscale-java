@@ -50,7 +50,7 @@ public abstract class AbstractPlanetscaleAdapter : PlanetscaleAdapter, Closeable
 
     override fun getMajorVersion(): Int = withDriver { it.majorVersion }
     override fun getMinorVersion(): Int = withDriver { it.minorVersion }
-    override fun getParentLogger(): Logger = withDriver { it.parentLogger }
+    override fun getParentLogger(): Logger? = withDriver { it.parentLogger }
     override fun getPropertyInfo(url: String, info: Properties?): Array<DriverPropertyInfo> = withDriver {
         it.getPropertyInfo(url, info)
     }
@@ -87,7 +87,7 @@ public abstract class AbstractPlanetscaleAdapter : PlanetscaleAdapter, Closeable
      */
     override fun renderedConnectionString(config: PlanetscaleConfig): String {
         return StringBuilder().apply {
-            append("jdbc:")
+            append(Constants.Prefix.JDBC)
             append(buildUri(config).toString())
         }.toString()
     }

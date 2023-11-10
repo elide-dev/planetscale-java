@@ -205,6 +205,7 @@ public final class com/planetscale/jvm/driver/Constants$DriverParams {
 public final class com/planetscale/jvm/driver/Constants$Prefix {
 	public static final field H2 Ljava/lang/String;
 	public static final field INSTANCE Lcom/planetscale/jvm/driver/Constants$Prefix;
+	public static final field JDBC Ljava/lang/String;
 	public static final field MYSQL Ljava/lang/String;
 	public static final field PLANETSCALE Ljava/lang/String;
 	public static final field REPLICATION Ljava/lang/String;
