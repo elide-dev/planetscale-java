@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 env:
-  DETEKT_RELEASE_TAG: v1.15.0
+  DETEKT_RELEASE_TAG: v1.23.3
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
