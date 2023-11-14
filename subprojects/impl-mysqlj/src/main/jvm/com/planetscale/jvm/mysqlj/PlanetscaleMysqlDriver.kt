@@ -29,7 +29,7 @@ public class PlanetscaleMysqlDriver : AbstractPlanetscaleAdapter() {
         // Return a qualified Planetscale endpoint for AWS.
         @JvmStatic public fun awsEndpoint(qualifier: String? = null): String = when (qualifier?.ifBlank { null }) {
             null -> qualifiedEndpoint(Constants.Provider.AWS)
-            else -> qualifiedEndpoint("$qualifier.${Constants.Provider.AWS}")
+            else -> qualifiedEndpoint(qualifier) // special case: no cloud qualifier for AWS
         }
 
         // Return a qualified Planetscale endpoint for GCP.
@@ -96,7 +96,7 @@ public class PlanetscaleMysqlDriver : AbstractPlanetscaleAdapter() {
         if (multiHost()) {
             append(
                 targetHosts().map {
-                    StringBuilder().appendHost(resolveHostSymbols(it))
+                    resolveHostSymbols(it)
                 }.joinToString(","),
             )
         } else {
@@ -146,10 +146,12 @@ public class PlanetscaleMysqlDriver : AbstractPlanetscaleAdapter() {
                 append("/")
                 credential?.let { append(it.database) }
                 append("?")
-                driverParameters().joinToString("&") { (k, v) ->
-                    append(k)
+                val params = driverParameters()
+                params.forEachIndexed { index, it ->
+                    append(it.first)
                     append("=")
-                    append(v)
+                    append(it.second)
+                    if (index < params.size - 1) append("&")
                 }
             }.toString(),
         )

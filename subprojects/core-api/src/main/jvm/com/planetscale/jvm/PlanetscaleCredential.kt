@@ -24,7 +24,7 @@ public sealed interface PlanetscaleCredential {
 
     /** TBD. */
     public companion object {
-        private fun dbNameFromUri(uri: URI): String {
+        internal fun dbNameFromUri(uri: URI): String {
             return uri.toString()
                 .drop("${Constants.Prefix.PLANETSCALE}//".length)
                 .substringAfter("/")

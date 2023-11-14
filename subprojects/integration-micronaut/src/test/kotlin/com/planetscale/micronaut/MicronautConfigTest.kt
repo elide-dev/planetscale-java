@@ -29,12 +29,6 @@ class MicronautConfigTest {
         op(load(cfg))
     }
 
-    private fun withContext(cfg: String, op: ApplicationContext.() -> Unit) {
-        withConfig(cfg) {
-            op(ApplicationContext.run(it))
-        }
-    }
-
     private fun withContext(cfg: Map<String, Any>, op: ApplicationContext.() -> Unit) {
         op(ApplicationContext.run(cfg))
     }

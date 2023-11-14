@@ -1,16 +1,12 @@
 import PlanetscaleBuild.publishable
 
 plugins {
-    id("common-conventions.kotlin")
     id("planetscale-publishable.klib")
     id(libs.plugins.sonar.get().pluginId)
     `version-catalog`
 }
 
-publishable(
-    name = PlanetscaleBuild.Library.CATALOG,
-    description = "Gradle Version Catalog for Planetscale libraries",
-)
+group = "com.planetscale"
 
 catalog {
     versionCatalog {
@@ -40,3 +36,10 @@ catalog {
 sonar {
     isSkipProject = true
 }
+
+publishable(
+    name = PlanetscaleBuild.Library.CATALOG,
+    description = "Gradle Version Catalog for Planetscale libraries",
+    publicationName = "catalog",
+    component = "versionCatalog",
+)

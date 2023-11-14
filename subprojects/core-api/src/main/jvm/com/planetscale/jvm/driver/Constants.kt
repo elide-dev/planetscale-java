@@ -27,8 +27,8 @@ public data object Constants {
     }
 
     public data object StringValue {
-        public const val TRUE: String = "true"
-        public const val FALSE: String = "false"
+        public const val TRUE: String = "TRUE"
+        public const val FALSE: String = "FALSE"
     }
 
     public data object Prefix {
@@ -36,7 +36,7 @@ public data object Constants {
         public const val MYSQL: String = "mysql:"
         public const val REPLICATION: String = "replication:"
         public const val H2: String = "jdbc:h2:mem"
-        public const val PLANETSCALE: String = "jdbc:planetscale:"
+        public const val PLANETSCALE: String = "planetscale:"
     }
 
     public data object SymbolicHosts {

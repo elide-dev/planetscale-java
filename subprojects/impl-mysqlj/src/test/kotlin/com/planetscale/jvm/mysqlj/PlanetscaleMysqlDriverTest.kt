@@ -13,7 +13,7 @@ class PlanetscaleMysqlDriverTest : AbstractAdapterTest<PlanetscaleMysqlDriver>()
 
     @Test fun testAwsEndpoint() {
         assertEquals("aws.connect.psdb.cloud", PlanetscaleMysqlDriver.awsEndpoint())
-        assertEquals("example.aws.connect.psdb.cloud", PlanetscaleMysqlDriver.awsEndpoint("example"))
+        assertEquals("example.connect.psdb.cloud", PlanetscaleMysqlDriver.awsEndpoint("example"))
     }
 
     @Test fun testGcpEndpoint() {
@@ -42,7 +42,7 @@ class PlanetscaleMysqlDriverTest : AbstractAdapterTest<PlanetscaleMysqlDriver>()
         assertEquals("aws.connect.psdb.cloud", PlanetscaleMysqlDriver.resolveHostSymbols("aws"))
         assertNotNull(PlanetscaleMysqlDriver.resolveHostSymbols("us-west-1.aws"))
         assertEquals(
-            "example.aws.connect.psdb.cloud",
+            "example.connect.psdb.cloud",
             PlanetscaleMysqlDriver.resolveHostSymbols("example.aws"),
         )
     }

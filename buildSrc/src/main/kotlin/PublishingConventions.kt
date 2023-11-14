@@ -8,18 +8,22 @@ import org.gradle.plugins.signing.SigningExtension
 
 /** Register the "javadocJar" task and include it in maven publications. */
 internal fun Project.publishJavadocJar() {
-    extensions.findByType(PublishingExtension::class.java)?.apply {
-        publications.withType(MavenPublication::class.java) {
-            artifact(tasks.named("javadocJar"))
+    if (tasks.findByName("javadocJar") != null) {
+        extensions.findByType(PublishingExtension::class.java)?.apply {
+            publications.withType(MavenPublication::class.java) {
+                artifact(tasks.named("javadocJar"))
+            }
         }
     }
 }
 
 /** Include the source task in publications. */
 internal fun Project.publishSourcesJar() {
-    extensions.findByType(PublishingExtension::class.java)?.apply {
-        publications.withType(MavenPublication::class.java) {
-            artifact(tasks.named("sourcesJar"))
+    if (tasks.findByName("sourcesJar") != null) {
+        extensions.findByType(PublishingExtension::class.java)?.apply {
+            publications.withType(MavenPublication::class.java) {
+                artifact(tasks.named("sourcesJar"))
+            }
         }
     }
 }
@@ -47,14 +51,20 @@ internal fun Project.configureSigning() {
 }
 
 internal fun Project.configureSigstore() {
-    extensions.getByType(SigstoreSignExtension::class.java).apply {
-        oidcClient.apply {
-            gitHub {
-                audience.set("sigstore")
-            }
-            web {
-                clientId.set("sigstore")
-                issuer.set("https://oauth2.sigstore.dev/auth")
+    if (properties["stamp"] == "true" && properties["enableSigstore"] == "true") {
+        // apply sigstore plugin
+        pluginManager.apply("dev.sigstore.sign")
+
+        // configure extension
+        extensions.getByType(SigstoreSignExtension::class.java).apply {
+            oidcClient.apply {
+                gitHub {
+                    audience.set("sigstore")
+                }
+                web {
+                    clientId.set("sigstore")
+                    issuer.set("https://oauth2.sigstore.dev/auth")
+                }
             }
         }
     }
