@@ -16,6 +16,7 @@ import java.util.stream.Collectors
  */
 public abstract class PlanetscaleDriver : Driver, Closeable, AutoCloseable {
     private companion object {
+
         @JvmStatic fun resolveImpl(explicit: String?): PlanetscaleAdapter {
             val serviceImpls = ServiceLoader.load(PlanetscaleAdapter::class.java)
                 .stream()
@@ -60,7 +61,8 @@ public abstract class PlanetscaleDriver : Driver, Closeable, AutoCloseable {
     override fun getMajorVersion(): Int = withAdapter { getMajorVersion() }
     override fun getMinorVersion(): Int = withAdapter { getMinorVersion() }
     override fun jdbcCompliant(): Boolean = true // both H2 and mysql are JDBC compliant
-    override fun acceptsURL(url: String?): Boolean = url?.startsWith(Constants.Prefix.PLANETSCALE) ?: false
+    override fun acceptsURL(url: String?): Boolean =
+        url?.startsWith(Constants.Prefix.JDBC + Constants.Prefix.PLANETSCALE) ?: false
     override fun getParentLogger(): Logger? = withAdapter { getParentLogger() }
     override fun close(): Unit = withAdapter { close() }
     override fun getPropertyInfo(url: String, info: Properties?): Array<DriverPropertyInfo> = withAdapter {

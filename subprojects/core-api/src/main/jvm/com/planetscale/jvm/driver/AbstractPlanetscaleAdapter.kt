@@ -1,6 +1,7 @@
 package com.planetscale.jvm.driver
 
 import com.planetscale.jvm.PlanetscaleAdapter
+import com.planetscale.jvm.PlanetscaleCloudConnection
 import com.planetscale.jvm.PlanetscaleConfig
 import com.planetscale.jvm.PlanetscaleConnection
 import java.io.Closeable
@@ -74,10 +75,8 @@ public abstract class AbstractPlanetscaleAdapter : PlanetscaleAdapter, Closeable
      */
     protected open fun PlanetscaleConfig.connectBacking(uri: URI, info: Properties?): PlanetscaleConnection {
         return withDriver { driver ->
-            driver.connect(toURI().toString(), info).let { connection ->
-                object : PlanetscaleConnection, Connection by connection {
-                    override val adapter: AbstractPlanetscaleAdapter get() = this@AbstractPlanetscaleAdapter
-                }
+            driver.connect("${Constants.Prefix.JDBC}${toURI()}", info).let { connection ->
+                PlanetscaleCloudConnection.create(this@AbstractPlanetscaleAdapter, connection)
             }
         }
     }

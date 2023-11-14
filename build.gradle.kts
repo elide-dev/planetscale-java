@@ -159,3 +159,21 @@ val preMerge by tasks.registering {
         tasks.findByName("apiCheck"),
     ))
 }
+
+val publishSandbox by tasks.registering {
+    group = "publishing"
+    description = "Publish all library targets"
+
+    dependsOn(listOf(
+        "core-api",
+        "driver",
+        "impl-mysqlj",
+        "integration-graalvm",
+        "integration-kotlin",
+        "integration-micronaut",
+    ).map {
+        ":subprojects:$it:publishMavenPublicationToGitHubPackagesRepository"
+    }.plus(
+        ":subprojects:catalog:publishCatalogPublicationToGitHubPackagesRepository",
+    ))
+}

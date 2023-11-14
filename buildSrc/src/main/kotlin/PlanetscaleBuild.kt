@@ -43,7 +43,13 @@ object PlanetscaleBuild {
         }
     }
 
-    fun Project.publishable(name: String, description: String, action: MavenPublication.() -> Unit = {}) {
+    fun Project.publishable(
+        name: String,
+        description: String,
+        publicationName: String = "maven",
+        component: String = "kotlin",
+        action: MavenPublication.() -> Unit = {},
+    ) {
         baseline()
         if (project.properties["stamp"] == "true") {
             publishJavadocJar()
@@ -64,11 +70,8 @@ object PlanetscaleBuild {
                 }
             }
 
-            publications.create("maven", MavenPublication::class.java) {
-                from(project.components.getByName("kotlin"))
-            }
-
-            publications.withType(MavenPublication::class.java) {
+            publications.create(publicationName, MavenPublication::class.java) {
+                from(project.components.getByName(component))
                 artifactId = name
 
                 pom {
@@ -87,7 +90,7 @@ object PlanetscaleBuild {
                         }
                     }
                     scm {
-                        url.set("https://github.com/elide-dev/elide")
+                        url.set("https://github.com/elide-dev/planetscale-java")
                     }
                 }
 

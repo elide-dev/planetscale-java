@@ -114,7 +114,7 @@ jobs:
         with:
           cache-read-only: false
           arguments: |
-            publishAllPublicationsToGitHubPackagesRepository
+            publishSandbox
             -Pstamp=false
             -Pversion=1.0-SNAPSHOT
             --scan
