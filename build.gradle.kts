@@ -155,7 +155,6 @@ val preMerge by tasks.registering {
     dependsOn(listOfNotNull(
         tasks.build,
         tasks.check,
-        tasks.sonar,
         tasks.findByName("apiCheck"),
     ))
 }
