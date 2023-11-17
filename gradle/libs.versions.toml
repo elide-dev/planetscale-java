@@ -29,7 +29,7 @@ sonar = "4.4.1.3373"
 slf4j = "2.0.9"
 logback = "1.4.11"
 testLogger = "4.0.0"
-versionCheck = "0.49.0"
+versionCheck = "0.50.0"
 testLoggerPlugin = "3.2.0"
 versionCatalogUpdate = "0.8.1"
 
