@@ -2,7 +2,7 @@
 atomicfu = "0.22.0"
 buildconfig-plugin = "4.2.0"
 doctor-plugin = "0.9.1"
-gradle-plugin-commonUserData = "1.12"
+gradle-plugin-commonUserData = "1.12.1"
 gradle-plugin-githubDependencyGraph = "0.4.1"
 gradle-plugin-profiler = "0.0.2"
 gradle-plugin-wrapperUpgrade = "0.11.4"
