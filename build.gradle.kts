@@ -6,7 +6,6 @@ import java.nio.charset.StandardCharsets
 import com.adarshr.gradle.testlogger.theme.ThemeType
 
 plugins {
-    alias(libs.plugins.doctor)
     alias(libs.plugins.sbom)
     alias(libs.plugins.sonar)
     alias(libs.plugins.kover)

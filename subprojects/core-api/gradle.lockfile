@@ -1,8 +1,8 @@
 # This is a Gradle generated file for dependency locking.
 # Manual edits can break the build and are not advised.
 # This file is expected to be part of source control.
-ch.qos.logback:logback-classic:1.4.11=testCompileClasspath,testRuntimeClasspath
-ch.qos.logback:logback-core:1.4.11=testCompileClasspath,testRuntimeClasspath
+ch.qos.logback:logback-classic:1.4.14=testCompileClasspath,testRuntimeClasspath
+ch.qos.logback:logback-core:1.4.14=testCompileClasspath,testRuntimeClasspath
 com.h2database:h2:2.2.224=testRuntimeClasspath
 org.apiguardian:apiguardian-api:1.1.2=testCompileClasspath
 org.jetbrains.kotlin:kotlin-stdlib:1.9.20=compileClasspath,runtimeClasspath,testCompileClasspath,testRuntimeClasspath
