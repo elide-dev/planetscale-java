@@ -3,8 +3,6 @@
     "DSL_SCOPE_VIOLATION",
 )
 
-import build.less.plugin.settings.buildless
-
 pluginManagement {
     repositories {
         maven("https://gradle.pkg.st/")
@@ -15,7 +13,7 @@ pluginManagement {
 }
 
 plugins {
-    id("build.less") version "1.0.0-beta1"
+    id("build.less") version "1.0.0-rc2"
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
 
     id("com.gradle.enterprise") version("3.15")
