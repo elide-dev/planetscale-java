@@ -85,7 +85,7 @@ jobs:
           java-version: ${{ inputs.java_version || vars.JVM_VERSION }}
           distribution: ${{ inputs.jvm || vars.JVM_VARIANT || 'zulu' }}
       - name: "Setup: Buildless"
-        uses: buildless/setup@v1.0.2
+        uses: buildless/setup@30e82389418c7f17046606183bc4c78b2c8913e0 # v1.0.2
       - name: "Setup: Cache SonarCloud Packages"
         uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
         with:
@@ -179,6 +179,11 @@ jobs:
       checks: write
       id-token: write
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@eb238b55efaa70779f274895e782ed17c84f2895 # v2.6.1
+        with:
+          egress-policy: audit
+
       - name: "Setup: Artifacts"
         uses: actions/download-artifact@7a1cd3216ca9260cd8022db641d960b1db4d1be4 # v4.0.0
         with:
