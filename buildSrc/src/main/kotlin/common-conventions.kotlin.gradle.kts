@@ -27,6 +27,10 @@ val forcedResolutions = listOf(
     "com.google.guava:guava" to ("32.1.3-jre" to "elide-dev/planetscale-java/security/dependabot/3"),
     // https://github.com/elide-dev/planetscale-java/security/dependabot/2
     "com.squareup.okio:okio" to ("3.4.0" to "elide-dev/planetscale-java/security/dependabot/2"),
+    // https://github.com/elide-dev/planetscale-java/security/dependabot/2
+    "com.squareup.okio:okio-jvm" to ("3.4.0" to "elide-dev/planetscale-java/security/dependabot/2"),
+    // kotlin stdlib is pinned to avoid incompatibilities
+    "org.jetbrains.kotlin" to ((kotlinSdkVersion ?: defaultKotlinSdkVersion) to "pinned kotlin stdlib"),
 ).toMap().toSortedMap()
 
 group = PlanetscaleBuild.Library.GROUP
@@ -140,10 +144,6 @@ tasks.test {
 
 configurations.all {
     resolutionStrategy.eachDependency {
-        if (requested.group == "org.jetbrains.kotlin" && requested.name.contains("stdlib")) {
-            useVersion(kotlinSdkVersion ?: defaultKotlinSdkVersion)
-            because("pin kotlin stdlib")
-        }
         if (forcedResolutions.containsKey("${requested.group}:${requested.name}")) {
             val (version, reason) = requireNotNull(forcedResolutions["${requested.group}:${requested.name}"])
             useVersion(version)
