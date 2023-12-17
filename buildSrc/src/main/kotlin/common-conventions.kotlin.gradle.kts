@@ -17,7 +17,7 @@ val lockDeps: String? by properties
 val kotlinLangVersion: String? by properties
 val kotlinSdkVersion = properties["kotlin.version"] as String?
 val defaultKotlinVersion = "1.9"
-val defaultKotlinSdkVersion = "1.9.20"
+val defaultKotlinSdkVersion = "1.9.21"
 val kotlinCompilerArgs = listOf<String>()
 
 val forcedResolutions = listOf(
@@ -156,4 +156,12 @@ afterEvaluate {
     val compileKotlin: KotlinCompile by tasks
     val compileJava: JavaCompile by tasks
     compileKotlin.destinationDirectory.set(compileJava.destinationDirectory)
+
+    tasks.compileJava.configure {
+        dependsOn(compileKotlin)
+        mustRunAfter(compileKotlin)
+    }
+    tasks.compileKotlin.configure {
+        destinationDirectory = compileJava.destinationDirectory
+    }
 }

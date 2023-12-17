@@ -12,13 +12,13 @@ graalvm-metadata = "0.3.3"
 h2 = "2.2.224"
 junit-jupiter = "5.10.1"
 ktlint = "0.49.1"
-kotlin-sdk = "1.9.20"
+kotlin-sdk = "1.9.21"
 kover = "0.7.4"
 kotlinx-abiValidator = "0.13.2"
 kotlinx-serialization = "1.6.0"
 kotlinx-coroutines = "1.7.3"
 kotlinx-collections = "0.3.5"
-ksp = "1.9.20-1.0.14"
+ksp = "1.9.21-1.0.15"
 micronaut-plugins = "4.2.1"
 mysql = "8.2.0"
 nexusPublish = "1.3.0"
@@ -50,6 +50,7 @@ kotlin-plugin-atomicfu = { id = "org.jetbrains.kotlin.plugin.atomicfu", version.
 kotlinx-plugin-abiValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "kotlinx-abiValidator" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 micronaut-library = { id = "io.micronaut.library", version.ref = "micronaut-plugins" }
+micronaut-library-minimal = { id = "io.micronaut.minimal.library", version.ref = "micronaut-plugins" }
 nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexusPublish" }
 sbom = { id = "org.spdx.sbom", version.ref = "spdx-sbom" }
 sigstore = { id = "dev.sigstore.sign", version.ref = "sigstore" }

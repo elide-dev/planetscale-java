@@ -4,7 +4,7 @@ plugins {
     id("common-conventions.kotlin")
     id("planetscale-publishable.klib")
     id("planetscale-connector.klib")
-    alias(libs.plugins.micronaut.library)
+    alias(libs.plugins.micronaut.library.minimal)
 }
 
 dependencies {

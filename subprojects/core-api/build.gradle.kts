@@ -5,6 +5,7 @@ plugins {
     id("planetscale-publishable.klib")
     alias(libs.plugins.ksp)
     alias(libs.plugins.buildConfig)
+    alias(libs.plugins.graalvm)
     `java-test-fixtures`
     idea
 }
@@ -43,7 +44,3 @@ publishable(
     name = PlanetscaleBuild.Library.CORE_API,
     description = "Planetscale driver JDBC interfaces",
 )
-
-tasks.compileJava.configure {
-    dependsOn(tasks.compileKotlin)
-}

@@ -16,11 +16,11 @@ plugins {
     id("build.less") version "1.0.0-rc2"
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
 
-    id("com.gradle.enterprise") version("3.15")
-    id("com.gradle.common-custom-user-data-gradle-plugin") version("1.11.1")
+    id("com.gradle.enterprise") version("3.15.1")
+    id("com.gradle.common-custom-user-data-gradle-plugin") version("1.12")
+    id("io.micronaut.platform.catalog") version(extra.properties["micronautVersion"] as String)
 }
 
-val micronautVersion: String? by settings
 val implementations = listOf(
     "mysqlj",
     "h2",  // for testing
@@ -31,10 +31,6 @@ val integrations = listOf(
     "kotlin",
     "micronaut",
 )
-
-buildless {
-    // nothing at this time
-}
 
 gradleEnterprise {
     buildScan {
@@ -52,11 +48,6 @@ dependencyResolutionManagement {
         maven("https://maven.pkg.st/")
         mavenCentral()
         gradlePluginPortal()
-    }
-    versionCatalogs {
-        create("mn") {
-            from("io.micronaut.platform:micronaut-platform:$micronautVersion")
-        }
     }
 }
 
