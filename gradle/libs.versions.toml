@@ -32,7 +32,7 @@ logback = "1.4.14"
 testLogger = "4.0.0"
 versionCheck = "0.50.0"
 testLoggerPlugin = "3.2.0"
-versionCatalogUpdate = "0.8.1"
+versionCatalogUpdate = "0.8.3"
 
 [plugins]
 buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig-plugin" }
