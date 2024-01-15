@@ -1,6 +1,6 @@
 [versions]
 atomicfu = "0.22.0"
-buildconfig-plugin = "5.3.3"
+buildconfig-plugin = "5.3.5"
 doctor-plugin = "0.9.1"
 gradle-plugin-commonUserData = "1.12"
 gradle-plugin-githubDependencyGraph = "1.1.1"
