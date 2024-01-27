@@ -4,7 +4,7 @@
 [![CI](https://github.com/elide-dev/planetscale-java/actions/workflows/on.push.yml/badge.svg)](https://github.com/elide-dev/planetscale-java/actions/workflows/on.push.yml)
 [![codecov](https://codecov.io/gh/elide-dev/planetscale-java/graph/badge.svg?token=MRUx3BHbMG)](https://codecov.io/gh/elide-dev/planetscale-java)
 [![Java 21](https://img.shields.io/badge/Java-21-blue.svg?logo=oracle)](https://openjdk.org/projects/jdk/21/)
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.21-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/8053/badge)](https://www.bestpractices.dev/projects/8053)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=elide-dev_planetscale-java&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=elide-dev_planetscale-java)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=elide-dev_planetscale-java&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=elide-dev_planetscale-java)
