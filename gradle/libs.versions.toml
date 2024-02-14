@@ -80,7 +80,7 @@ plugin-sigstore = { group = "dev.sigstore", name = "sigstore-gradle-sign-plugin"
 
 # These are overridden in version resolutions, but listed here to avoid warnings with Dependabot.
 # See `common-conventions.kotlin.gradle.kts` for more information.
-org-json = { module = "org.json:json", version = "20231013" }
+org-json = { module = "org.json:json", version = "20240205" }
 guava = { module = "com.google.guava:guava", version = "33.0.0-jre" }
 okio-core = { module = "com.squareup.okio:okio", version = "3.8.0" }
 okio-jvm = { module = "com.squareup.okio:okio-jvm", version = "3.8.0" }
