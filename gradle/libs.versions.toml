@@ -82,8 +82,8 @@ plugin-sigstore = { group = "dev.sigstore", name = "sigstore-gradle-sign-plugin"
 # See `common-conventions.kotlin.gradle.kts` for more information.
 org-json = { module = "org.json:json", version = "20231013" }
 guava = { module = "com.google.guava:guava", version = "33.0.0-jre" }
-okio-core = { module = "com.squareup.okio:okio", version = "3.7.0" }
-okio-jvm = { module = "com.squareup.okio:okio-jvm", version = "3.7.0" }
+okio-core = { module = "com.squareup.okio:okio", version = "3.8.0" }
+okio-jvm = { module = "com.squareup.okio:okio-jvm", version = "3.8.0" }
 
 [bundles]
 h2 = ["h2"]
