@@ -53,12 +53,12 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
       - name: "Setup: Initialize CodeQL"
-        uses: github/codeql-action/init@05963f47d870e2cb19a537396c1f668a348c7d8f # v3.24.8
+        uses: github/codeql-action/init@4355270be187e1b672a7a1c7c7bae5afdc1ab94a # v3.24.10
         with:
           languages: java-kotlin
       - name: "CodeQL: Autobuild"
-        uses: github/codeql-action/autobuild@05963f47d870e2cb19a537396c1f668a348c7d8f # v3.24.8
+        uses: github/codeql-action/autobuild@4355270be187e1b672a7a1c7c7bae5afdc1ab94a # v3.24.10
       - name: "CodeQL: Analysis"
-        uses: github/codeql-action/analyze@05963f47d870e2cb19a537396c1f668a348c7d8f # v3.24.8
+        uses: github/codeql-action/analyze@4355270be187e1b672a7a1c7c7bae5afdc1ab94a # v3.24.10
         with:
           category: "/language:java-kotlin"
