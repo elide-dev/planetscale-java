@@ -99,7 +99,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
       - name: "Build: Gradle"
-        uses: gradle/gradle-build-action@29c0906b64b8fc82467890bfb7a0a7ef34bda89e # v2
+        uses: gradle/gradle-build-action@8baac4c8ef753599f92eeb509c246d09d6250fa6 # v2
         id: gradlebuild
         env:
           CI: true
@@ -119,7 +119,7 @@ jobs:
             --dependency-verification=lenient
             -Pci=true
       - name: "Report: Sonar"
-        uses: gradle/gradle-build-action@29c0906b64b8fc82467890bfb7a0a7ef34bda89e # v2
+        uses: gradle/gradle-build-action@8baac4c8ef753599f92eeb509c246d09d6250fa6 # v2
         id: sonar
         continue-on-error: true
         env:
