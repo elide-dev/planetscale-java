@@ -140,7 +140,7 @@ jobs:
         run: |
           echo "hashes=$(sha256sum ./subprojects/*/build/libs/* | base64 -w0)" >> "$GITHUB_OUTPUT"
       - name: "Report: Tests"
-        uses: dorny/test-reporter@a923ed8851f90a1509b334ca82bd1c5c13a02bb2 # v1
+        uses: dorny/test-reporter@9098107e2aa7ed7d1150f776ddea55f55c80016b # v1
         if: success() || failure()
         with:
           name: Library Tests
