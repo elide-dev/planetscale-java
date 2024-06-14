@@ -123,7 +123,7 @@ jobs:
         with:
           name: libraries-jvm
       - name: "Publish: Snapshots"
-        uses: gradle/gradle-build-action@29c0906b64b8fc82467890bfb7a0a7ef34bda89e # v2
+        uses: gradle/gradle-build-action@db35f2304698ac6ff98958322dfd3db0a5da9fdf # v2
         id: publish
         env:
           CI: true
@@ -176,7 +176,7 @@ jobs:
         with:
           name: libraries-jvm
       - name: "Publish: Live"
-        uses: gradle/gradle-build-action@29c0906b64b8fc82467890bfb7a0a7ef34bda89e # v2
+        uses: gradle/gradle-build-action@db35f2304698ac6ff98958322dfd3db0a5da9fdf # v2
         id: publish
         env:
           CI: true
